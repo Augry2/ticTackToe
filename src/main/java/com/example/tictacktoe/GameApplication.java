@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**view class, creates the gui window*/
 public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
