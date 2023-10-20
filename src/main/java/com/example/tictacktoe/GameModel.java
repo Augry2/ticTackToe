@@ -3,6 +3,7 @@ package com.example.tictacktoe;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,23 +19,75 @@ public class GameModel {
     boolean playerTwosTurn = false;                                                                            // the other one should be set to true
 
     // todo: 1 create list of player positions / computer positions
+    //              - find a way to save the position of the button clicked  in the correct place ---DONE
+
     // todo: 2 create small lists that contains win conditions
     // todo: 3 add the lists to a bigger list where each small list will be elements
     // todo: 4 check if the player positions match one of the elements in the big list
+
+    /*when player presses a button the controller class will add the an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
+    private List<Integer> playerPositionList = new ArrayList<>();
+
+    public List<Integer> getPlayerPositionList() {
+        return playerPositionList;
+    }
+
+    private List<Integer> computerPositionList = new ArrayList<>();
+
+    public List<Integer> getComputerPositionList() {
+        return computerPositionList;
+    }
+
+    public boolean checkWin() { // todo if it returns true then stop the game
+        List<List> winCons = getLists();
+
+        for (List current : winCons) {
+            if (playerPositionList.containsAll(current)) {
+                System.out.println("Player Won");
+                return true;
+            }
+        }
+        for (List current : winCons) {
+            if (computerPositionList.containsAll(current)) {
+                System.out.println("Computer Won");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static List<List> getLists() {
+        //todo it works now because it recreates the lists and re populates it every time but maybe there is a better way to do this
+        List<Integer> topRow = Arrays.asList(1, 2, 3);
+        List<Integer> midRow = Arrays.asList(4, 5, 6);
+        List<Integer> botRow = Arrays.asList(7, 8, 9);
+        List<Integer> leftCol = Arrays.asList(1, 4, 7);
+        List<Integer> midCol = Arrays.asList(2, 5, 8);
+        List<Integer> rightCol = Arrays.asList(3, 6, 9);
+        List<Integer> cross1 = Arrays.asList(1, 5, 9);
+        List<Integer> cross2 = Arrays.asList(3, 5, 7);
+        List<List> winCons = new ArrayList<>();
+        winCons.add(topRow);
+        winCons.add(midRow);
+        winCons.add(botRow);
+        winCons.add(leftCol);
+        winCons.add(midCol);
+        winCons.add(rightCol);
+        winCons.add(cross1);
+        winCons.add(cross2);
+        return winCons;
+    }
+
 
     public void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
     }
-    public void setPlayerOnesTurn(){
+
+    public void setPlayerOnesTurn() {
         playerTwosTurn = false;
         playerOnesTurn = true;
     }
-
-    public void checkWin(){
-        List<Integer> topRow = Arrays.asList(1,2,3); // immutable list
-    }
-
 
 
     // variables for all the buttons here
