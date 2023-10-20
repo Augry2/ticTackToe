@@ -27,19 +27,16 @@ public class GameModel {
 
     /*when player presses a button the controller class will add the an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
     private List<Integer> playerPositionList = new ArrayList<>();
-
+    private List<Integer> computerPositionList = new ArrayList<>();
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-
-    private List<Integer> computerPositionList = new ArrayList<>();
-
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
 
     public boolean checkWin() { // todo if it returns true then stop the game
-        List<List> winCons = getLists();
+        List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
 
         for (List current : winCons) {
             if (playerPositionList.containsAll(current)) {
