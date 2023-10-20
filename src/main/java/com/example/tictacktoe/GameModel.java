@@ -25,16 +25,19 @@ public class GameModel {
     // todo: 3 add the lists to a bigger list where each small list will be elements
     // todo: 4 check if the player positions match one of the elements in the big list
 
-    /*when player presses a button the controller class will add the an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
+    /*when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
     private List<Integer> playerPositionList = new ArrayList<>();
     private List<Integer> computerPositionList = new ArrayList<>();
+
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
+
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
 
+    /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
     public boolean checkWin() { // todo if it returns true then stop the game
         List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
 
@@ -53,8 +56,8 @@ public class GameModel {
         return false;
     }
 
+    /*generes the diffrent win conditions for the checWins method **/
     private static List<List> getLists() {
-        //todo it works now because it recreates the lists and re populates it every time but maybe there is a better way to do this
         List<Integer> topRow = Arrays.asList(1, 2, 3);
         List<Integer> midRow = Arrays.asList(4, 5, 6);
         List<Integer> botRow = Arrays.asList(7, 8, 9);
@@ -72,15 +75,17 @@ public class GameModel {
         winCons.add(rightCol);
         winCons.add(cross1);
         winCons.add(cross2);
+
         return winCons;
     }
 
-
+    /*makes it so the player can pick a box**/
     public void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
     }
 
+    /*makes it so the computer will pick a box**/
     public void setPlayerOnesTurn() {
         playerTwosTurn = false;
         playerOnesTurn = true;
