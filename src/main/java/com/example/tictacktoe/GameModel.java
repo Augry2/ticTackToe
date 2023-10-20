@@ -14,13 +14,6 @@ public class GameModel {
     boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
     boolean playerTwosTurn = false;                                                                            // the other one should be set to true
 
-    public boolean PlayerOnesTurn(){
-        return playerOnesTurn; // if playerOnesTurn = true, return true otherwise return false
-    }
-    public boolean ComputerMove(){
-        return playerTwosTurn;
-    }
-
     public void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
@@ -29,6 +22,8 @@ public class GameModel {
         playerTwosTurn = false;
         playerOnesTurn = true;
     }
+
+
 
 
     // variables for all the buttons here

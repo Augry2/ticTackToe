@@ -11,15 +11,16 @@ public class GameController {
     public Button button1;
     public Button button2;
     public Button button3;
-
+    private boolean button1Clicked = false;
+    private boolean button2Clicked = false;
+    private boolean button3Clicked = false;
 
     GameModel model = new GameModel();
-
     public GameModel getModel(){
         return model;
     }
 
-    /**binding the StringProperty in the model class to the button in this class, the button in this class is in turn binded to the fxml file*/
+    /**binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file*/
     public void initialize() {
         model.button1PropertyProperty().bindBidirectional(button1.textProperty());
         model.button2PropertyProperty().bindBidirectional(button2.textProperty());
@@ -27,22 +28,45 @@ public class GameController {
     }
 
 
-    // todo determine if playerOne or playerTwo gets to click the button
     public void Button1Clicked(MouseEvent mouseEvent) {
-        if (getModel().playerOnesTurn){
-            setButtonTextToO(getModel().button1PropertyProperty());
-            getModel().setPlayerTwosTurn();
-        }else{
-            setButtonTextToX(getModel().button1PropertyProperty());
-            getModel().setPlayerOnesTurn();
-        }
+
+       if (!button1Clicked){
+           if (getModel().playerOnesTurn){
+               setButtonTextToO(getModel().button1PropertyProperty());
+               getModel().setPlayerTwosTurn();
+           }else{
+               setButtonTextToX(getModel().button1PropertyProperty());
+               getModel().setPlayerOnesTurn();
+           }
+           button1Clicked = true;
+       }
+
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {
-        setButtonTextToO(getModel().button2PropertyProperty());
+        if (!button2Clicked){
+            if (getModel().playerOnesTurn){
+                setButtonTextToO(getModel().button2PropertyProperty());
+                getModel().setPlayerTwosTurn();
+            }else{
+                setButtonTextToX(getModel().button2PropertyProperty());
+                getModel().setPlayerOnesTurn();
+            }
+            button2Clicked = true;
+        }
     }
 
     public void Button3Clicked(MouseEvent mouseEvent) {
+        if (!button3Clicked){
+            if (getModel().playerOnesTurn){
+                setButtonTextToO(getModel().button3PropertyProperty());
+                getModel().setPlayerTwosTurn();
+            }else{
+                setButtonTextToX(getModel().button3PropertyProperty());
+                getModel().setPlayerOnesTurn();
+            }
+            button3Clicked = true;
+        }
     }
 
     public void Button4Clicked(MouseEvent mouseEvent) {
@@ -63,14 +87,14 @@ public class GameController {
     public void Button9Clicked(MouseEvent mouseEvent) {
     }
 
-    /**method that changes text of the button, reusable for all the buttons*/
+
+
+    /**method that changes text of the button*/
     public void setButtonTextToX(StringProperty buttonProperty) {
         buttonProperty.set("X");
     }
     public void setButtonTextToO(StringProperty buttonProperty) {
         buttonProperty.set("O");
     }
-    public void changeButtonText(StringProperty buttonProperty, String player) {
-        buttonProperty.set(player);
-    }
+
 }
