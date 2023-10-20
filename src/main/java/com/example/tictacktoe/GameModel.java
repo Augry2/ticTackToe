@@ -3,6 +3,9 @@ package com.example.tictacktoe;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * contains the data and logic behind the game
  */
@@ -14,6 +17,11 @@ public class GameModel {
     boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
     boolean playerTwosTurn = false;                                                                            // the other one should be set to true
 
+    // todo: 1 create list of player positions / computer positions
+    // todo: 2 create small lists that contains win conditions
+    // todo: 3 add the lists to a bigger list where each small list will be elements
+    // todo: 4 check if the player positions match one of the elements in the big list
+
     public void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
@@ -23,6 +31,9 @@ public class GameModel {
         playerOnesTurn = true;
     }
 
+    public void checkWin(){
+        List<Integer> topRow = Arrays.asList(1,2,3); // immutable list
+    }
 
 
 
