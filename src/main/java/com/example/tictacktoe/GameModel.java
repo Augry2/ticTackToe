@@ -3,8 +3,33 @@ package com.example.tictacktoe;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
-/**contains the data and logic behind the game*/
+/**
+ * contains the data and logic behind the game
+ */
 public class GameModel {
+
+    String playerOne = "O"; // player one always gets to start
+    String playerTwo = "X";
+
+    boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
+    boolean playerTwosTurn = false;                                                                            // the other one should be set to true
+
+    public boolean PlayerOnesTurn(){
+        return playerOnesTurn; // if playerOnesTurn = true, return true otherwise return false
+    }
+    public boolean ComputerMove(){
+        return playerTwosTurn;
+    }
+
+    public void setPlayerTwosTurn() {
+        playerOnesTurn = false;
+        playerTwosTurn = true;
+    }
+    public void setPlayerOnesTurn(){
+        playerTwosTurn = false;
+        playerOnesTurn = true;
+    }
+
 
     // variables for all the buttons here
     private Button button1 = new Button("button1");
@@ -33,13 +58,6 @@ public class GameModel {
 
     private Button button9 = new Button("button9");
     private StringProperty button9Property = button9.textProperty();
-
-
-
-
-
-
-
 
 
     public Button getButton1() {

@@ -12,6 +12,7 @@ public class GameController {
     public Button button2;
     public Button button3;
 
+
     GameModel model = new GameModel();
 
     public GameModel getModel(){
@@ -26,11 +27,19 @@ public class GameController {
     }
 
 
+    // todo determine if playerOne or playerTwo gets to click the button
     public void Button1Clicked(MouseEvent mouseEvent) {
-        setButtonTextToX(getModel().button1PropertyProperty());
+        if (getModel().playerOnesTurn){
+            setButtonTextToO(getModel().button1PropertyProperty());
+            getModel().setPlayerTwosTurn();
+        }else{
+            setButtonTextToX(getModel().button1PropertyProperty());
+            getModel().setPlayerOnesTurn();
+        }
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {
+        setButtonTextToO(getModel().button2PropertyProperty());
     }
 
     public void Button3Clicked(MouseEvent mouseEvent) {
@@ -60,5 +69,8 @@ public class GameController {
     }
     public void setButtonTextToO(StringProperty buttonProperty) {
         buttonProperty.set("O");
+    }
+    public void changeButtonText(StringProperty buttonProperty, String player) {
+        buttonProperty.set(player);
     }
 }
