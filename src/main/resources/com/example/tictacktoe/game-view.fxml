@@ -22,19 +22,20 @@
         </rowConstraints>
 
          <children>
-            <Button fx:id="button1" maxHeight="100" maxWidth="100" text="1" onMouseClicked="#Button1Clicked"/>
-            <Button fx:id="button2" maxHeight="100" maxWidth="100" text="2" GridPane.columnIndex="1" onMouseClicked="#Button2Clicked"/>
-            <Button fx:id="button3" maxHeight="100" maxWidth="100" text="3" GridPane.columnIndex="2" onMouseClicked="#Button3Clicked"/>
-            <Button fx:id="button4" maxHeight="100" maxWidth="100" text="4" GridPane.rowIndex="1" onMouseClicked="#Button4Clicked"/>
-            <Button fx:id="button5" maxHeight="100" maxWidth="100" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" onMouseClicked="#Button5Clicked"/>
-            <Button fx:id="button6" maxHeight="100" maxWidth="100" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" onMouseClicked="#Button6Clicked"/>
-            <Button fx:id="button7" maxHeight="100" maxWidth="100" text="7" GridPane.rowIndex="2" onMouseClicked="#Button7Clicked"/>
-            <Button fx:id="button8" maxHeight="100" maxWidth="100" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" onMouseClicked="#Button8Clicked"/>
-            <Button fx:id="button9" maxHeight="100" maxWidth="100" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" onMouseClicked="#Button9Clicked"/>
+            <Button fx:id="button1" maxHeight="100" maxWidth="100" onMouseClicked="#Button1Clicked" text="1" />
+            <Button fx:id="button2" maxHeight="100" maxWidth="100" onMouseClicked="#Button2Clicked" text="2" GridPane.columnIndex="1" />
+            <Button fx:id="button3" maxHeight="100" maxWidth="100" onMouseClicked="#Button3Clicked" text="3" GridPane.columnIndex="2" />
+            <Button fx:id="button4" maxHeight="100" maxWidth="100" onMouseClicked="#Button4Clicked" text="4" GridPane.rowIndex="1" />
+            <Button fx:id="button5" maxHeight="100" maxWidth="100" onMouseClicked="#Button5Clicked" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="button6" maxHeight="100" maxWidth="100" onMouseClicked="#Button6Clicked" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="button7" maxHeight="100" maxWidth="100" onMouseClicked="#Button7Clicked" text="7" GridPane.rowIndex="2" />
+            <Button fx:id="button8" maxHeight="100" maxWidth="100" onMouseClicked="#Button8Clicked" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="button9" maxHeight="100" maxWidth="100" onMouseClicked="#Button9Clicked" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
 
       </GridPane>
    </center>
+
 
 
 

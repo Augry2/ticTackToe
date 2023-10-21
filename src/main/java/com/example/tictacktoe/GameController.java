@@ -20,15 +20,7 @@ public class GameController {
     public Button button7;
     public Button button8;
     public Button button9;
-    private boolean button1Clicked = false;
-    private boolean button2Clicked = false;
-    private boolean button3Clicked = false;
-    private boolean button4Clicked = false;
-    private boolean button5Clicked = false;
-    private boolean button6Clicked = false;
-    private boolean button7Clicked = false;
-    private boolean button8Clicked = false;
-    private boolean button9Clicked = false;
+
     boolean[] buttonClickedArray = new boolean[9]; // remembers which buttons has been clicked
 
     GameModel model = new GameModel();
@@ -52,7 +44,7 @@ public class GameController {
 
     public void handleButtonClick(Button button, int buttonNumber, boolean[] buttonClickedArray, List<Integer> playerPositionList, List<Integer> computerPositionList) {
 
-        if (!buttonClickedArray[buttonNumber-1]) { // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
+        if (!buttonClickedArray[buttonNumber-1]) { // (if buttonclicked is false) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
             if (getModel().playerOnesTurn) {
                 setButtonTextToO(button.textProperty());
                 getModel().setPlayerTwosTurn();
@@ -69,6 +61,7 @@ public class GameController {
 
     public void Button1Clicked(MouseEvent mouseEvent) {
         handleButtonClick(button1, 1, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {

@@ -12,22 +12,12 @@ import java.util.List;
  */
 public class GameModel {
 
-    String playerOne = "O"; // player one always gets to start
-    String playerTwo = "X";
-
-    boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
-    boolean playerTwosTurn = false;                                                                            // the other one should be set to true
-
-    // todo: 1 create list of player positions / computer positions
-    //              - find a way to save the position of the button clicked  in the correct place ---DONE
-
-    // todo: 2 create small lists that contains win conditions
-    // todo: 3 add the lists to a bigger list where each small list will be elements
-    // todo: 4 check if the player positions match one of the elements in the big list
+    public boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
+    public boolean playerTwosTurn = false;                                                                            // the other one should be set to true
 
     /*when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
-    private List<Integer> playerPositionList = new ArrayList<>();
-    private List<Integer> computerPositionList = new ArrayList<>();
+    private  List<Integer> playerPositionList = new ArrayList<>();
+    private  List<Integer> computerPositionList = new ArrayList<>();
 
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
