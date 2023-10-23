@@ -38,6 +38,14 @@
    <top>
       <Label fx:id="winnerAnounce" text="" BorderPane.alignment="CENTER" />
    </top>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button fx:id="playAgainButton" onMouseClicked="#PlayAgainButtonClicked" text="Play Again"  />
+            <Button fx:id="exitProgramButton" onMouseClicked="#ExitProgramButtonClicked" text="Exit Program"  />
+        </buttons>
+      </ButtonBar>
+   </bottom>
 
 
 

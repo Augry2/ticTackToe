@@ -6,3 +6,12 @@ make it so computer places its own marks
 
 handle what happens if the game is a tie
     - all buttonsClickedArray elements are true and checkwinner is false
+
+
+    creating buttons
+    - add button in xml file
+    - add id
+    - create new button in controller
+    - create buttons and stringproperty in model
+    - add on mouseclicked in xml
+    - auto generate onmouseclicked methods in controller

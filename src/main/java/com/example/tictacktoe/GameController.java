@@ -1,5 +1,6 @@
 package com.example.tictacktoe;
 
+import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +23,9 @@ public class GameController {
     public Button button8;
     public Button button9;
     public Label winnerAnounce; // should be visible when a winner is decided
+    public Button playAgainButton;
+    public Button exitProgramButton;
+
 
     boolean[] buttonClickedArray = new boolean[9]; // remembers which buttons has been clicked
 
@@ -41,6 +45,9 @@ public class GameController {
         model.button7PropertyProperty().bindBidirectional(button7.textProperty());
         model.button8PropertyProperty().bindBidirectional(button8.textProperty());
         model.button9PropertyProperty().bindBidirectional(button9.textProperty());
+        model.playAgainButtonPropertyProperty().bindBidirectional(playAgainButton.textProperty());
+        model.exitProgramButtonPropertyProperty().bindBidirectional(exitProgramButton.textProperty());
+
     }
 
 
@@ -58,16 +65,26 @@ public class GameController {
             }
             buttonClickedArray[buttonNumber-1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
 
-
-            if (getModel().checkWin() == true){ // runs checkWin aswell as the if statement
+            // sets text label and disables the buttons
+            if (getModel().checkWin()){ // runs checkWin aswell as the if statement
                 winnerAnounce.textProperty().set(model.getWinnerMessage());
-                //getModel().resetModelData();
-                //resetGame();
                 disableButtons();
             }
 
 
         }
+    }
+
+    public void enableButtons(){
+        button1.setDisable(false);
+        button2.setDisable(false);
+        button3.setDisable(false);
+        button4.setDisable(false);
+        button5.setDisable(false);
+        button6.setDisable(false);
+        button7.setDisable(false);
+        button8.setDisable(false);
+        button9.setDisable(false);
     }
 
     public void disableButtons(){
@@ -82,15 +99,22 @@ public class GameController {
         button9.setDisable(true);
     }
 
-
     public void resetGame(){
         model.resetModelData();
         Arrays.fill(buttonClickedArray, false);
+        enableButtons();
+    }
+
+    public void PlayAgainButtonClicked(MouseEvent mouseEvent) {
+        resetGame();
+    }
+
+    public void ExitProgramButtonClicked(MouseEvent mouseEvent) {
+        Platform.exit();
     }
 
     public void Button1Clicked(MouseEvent mouseEvent) {
         handleButtonClick(button1, 1, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
-
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {
@@ -132,5 +156,6 @@ public class GameController {
     public void setButtonTextToO(StringProperty buttonProperty) {
         buttonProperty.set("O");
     }
+
 
 }

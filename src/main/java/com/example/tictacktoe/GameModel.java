@@ -151,6 +151,53 @@ public class GameModel {
     private Button button9 = new Button("button9");
     private StringProperty button9Property = button9.textProperty();
 
+    private Button exitProgramButton = new Button("exit program");
+    private StringProperty exitProgramButtonProperty = exitProgramButton.textProperty();
+
+    private Button playAgainButton = new Button("play again");
+    private StringProperty playAgainButtonProperty = playAgainButton.textProperty();
+
+
+
+    public Button getExitProgramButton() {
+        return exitProgramButton;
+    }
+
+    public void setExitProgramButton(Button exitProgramButton) {
+        this.exitProgramButton = exitProgramButton;
+    }
+
+    public String getExitProgramButtonProperty() {
+        return exitProgramButtonProperty.get();
+    }
+
+    public StringProperty exitProgramButtonPropertyProperty() {
+        return exitProgramButtonProperty;
+    }
+
+    public void setExitProgramButtonProperty(String exitProgramButtonProperty) {
+        this.exitProgramButtonProperty.set(exitProgramButtonProperty);
+    }
+
+    public Button getPlayAgainButton() {
+        return playAgainButton;
+    }
+
+    public void setPlayAgainButton(Button playAgainButton) {
+        this.playAgainButton = playAgainButton;
+    }
+
+    public String getPlayAgainButtonProperty() {
+        return playAgainButtonProperty.get();
+    }
+
+    public StringProperty playAgainButtonPropertyProperty() {
+        return playAgainButtonProperty;
+    }
+
+    public void setPlayAgainButtonProperty(String playAgainButtonProperty) {
+        this.playAgainButtonProperty.set(playAgainButtonProperty);
+    }
 
     public Button getButton1() {
         return button1;
