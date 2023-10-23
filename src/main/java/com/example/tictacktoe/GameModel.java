@@ -14,6 +14,11 @@ public class GameModel {
 
     public boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
     public boolean playerTwosTurn = false;                                                                            // the other one should be set to true
+    private String winner;
+    private int playerWins;
+    private int computerWins;
+    String WinnerMessage;
+
 
     /*when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
     private  List<Integer> playerPositionList = new ArrayList<>();
@@ -27,19 +32,55 @@ public class GameModel {
         return computerPositionList;
     }
 
+    public void resetModelData() {
+        // Clear player and computer position lists
+        playerPositionList.clear();
+        computerPositionList.clear();
+
+        // Reset turn variables
+        playerOnesTurn = true;
+        playerTwosTurn = false;
+
+        // Reset winner and winner message
+        winner = null;
+        WinnerMessage = null;
+
+        // Reset button properties
+        resetButtonText();
+    }
+
+    private void resetButtonText(){
+        button1.setText("");
+        button2.setText("");
+        button3.setText("");
+        button4.setText("");
+        button5.setText("");
+        button6.setText("");
+        button7.setText("");
+        button8.setText("");
+        button9.setText("");
+
+    }
+
     /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
-    public boolean checkWin() { // todo if it returns true then stop the game
+    public boolean checkWin() {
         List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
 
         for (List current : winCons) {
             if (playerPositionList.containsAll(current)) {
                 System.out.println("Player Won");
+                winner = "Player Won";
+                playerWins++;
+                WinnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
                 return true;
             }
         }
         for (List current : winCons) {
             if (computerPositionList.containsAll(current)) {
                 System.out.println("Computer Won");
+                winner = "Computer Won";
+                computerWins++;
+                WinnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
                 return true;
             }
         }
@@ -289,5 +330,9 @@ public class GameModel {
 
     public void setButton9Property(String button9Property) {
         this.button9Property.set(button9Property);
+    }
+
+    public String getWinnerMessage() {
+        return WinnerMessage;
     }
 }

@@ -1,0 +1,8 @@
+add functionality for pausing program when player or computer wins ()
+    - display scores
+    - play again or exit
+
+make it so computer places its own marks
+
+handle what happens if the game is a tie
+    - all buttonsClickedArray elements are true and checkwinner is false

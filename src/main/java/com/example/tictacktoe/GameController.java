@@ -2,9 +2,10 @@ package com.example.tictacktoe;
 
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**Containing methods that control what happens when a button is clicked*/
@@ -20,6 +21,7 @@ public class GameController {
     public Button button7;
     public Button button8;
     public Button button9;
+    public Label winnerAnounce; // should be visible when a winner is decided
 
     boolean[] buttonClickedArray = new boolean[9]; // remembers which buttons has been clicked
 
@@ -55,8 +57,35 @@ public class GameController {
                 computerPositionList.add(buttonNumber);
             }
             buttonClickedArray[buttonNumber-1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
-            getModel().checkWin();
+
+
+            if (getModel().checkWin() == true){ // runs checkWin aswell as the if statement
+                winnerAnounce.textProperty().set(model.getWinnerMessage());
+                //getModel().resetModelData();
+                //resetGame();
+                disableButtons();
+            }
+
+
         }
+    }
+
+    public void disableButtons(){
+        button1.setDisable(true);
+        button2.setDisable(true);
+        button3.setDisable(true);
+        button4.setDisable(true);
+        button5.setDisable(true);
+        button6.setDisable(true);
+        button7.setDisable(true);
+        button8.setDisable(true);
+        button9.setDisable(true);
+    }
+
+
+    public void resetGame(){
+        model.resetModelData();
+        Arrays.fill(buttonClickedArray, false);
     }
 
     public void Button1Clicked(MouseEvent mouseEvent) {
