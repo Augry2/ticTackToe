@@ -14,20 +14,19 @@ public class GameModel {
 
     public boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
     public boolean playerTwosTurn = false;                                                                            // the other one should be set to true
-    private String winner;
-    private int playerWins;
+    private String winner; // String containing who won the round
+    private int playerWins; // contains total amount of wins
     private int computerWins;
-    String WinnerMessage;
+    private String WinnerMessage; // String to be printed out after each round
+
 
 
     /*when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
     private  List<Integer> playerPositionList = new ArrayList<>();
     private  List<Integer> computerPositionList = new ArrayList<>();
-
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
@@ -59,7 +58,6 @@ public class GameModel {
         button7.setText("");
         button8.setText("");
         button9.setText("");
-
     }
 
     /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/

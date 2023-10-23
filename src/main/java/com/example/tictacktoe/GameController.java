@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**Containing methods that control what happens when a button is clicked*/
 public class GameController {
@@ -50,6 +51,62 @@ public class GameController {
 
     }
 
+    public void handleComputerClick(){
+
+        if (areAllButtonsClicked(buttonClickedArray)){
+            disableButtons();
+            return;
+        }
+
+        if (getModel().playerTwosTurn){ // if its the computers turn and nobody has won
+            Random random = new Random();
+            int computerMove = random.nextInt(9)+1;
+            boolean asdf = true;
+
+            while(asdf){
+                if (!buttonClickedArray[computerMove - 1]){
+                    handleButtonClick(getButtonByNumber(computerMove), computerMove, buttonClickedArray,
+                            getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+                    asdf = false;
+                }else{
+                    computerMove = random.nextInt(9)+1;
+                }
+            }
+        }
+    }
+    private Button getButtonByNumber(int buttonNr){
+        switch (buttonNr){
+            case 1:
+                return button1;
+            case 2:
+                return button2;
+            case 3:
+                return button3;
+            case 4:
+                return button4;
+            case 5:
+                return button5;
+            case 6:
+                return button6;
+            case 7:
+                return button7;
+            case 8:
+                return button8;
+            case 9:
+                return button9;
+            default:
+                return null;
+        }
+    }
+
+    private boolean areAllButtonsClicked(boolean[] buttonClickedArray) {
+        for (boolean buttonClicked : buttonClickedArray) {
+            if (!buttonClicked) {
+                return false; // If any button is not clicked, return false
+            }
+        }
+        return true; // All buttons are clicked, return true
+    }
 
     public void handleButtonClick(Button button, int buttonNumber, boolean[] buttonClickedArray, List<Integer> playerPositionList, List<Integer> computerPositionList) {
 
@@ -65,11 +122,16 @@ public class GameController {
             }
             buttonClickedArray[buttonNumber-1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
 
-            // sets text label and disables the buttons
+
+
+            // after the player has taken a turn, it checks if he or computer won, if nobody won the computer gets its turn
             if (getModel().checkWin()){ // runs checkWin aswell as the if statement
                 winnerAnounce.textProperty().set(model.getWinnerMessage());
                 disableButtons();
+            } else if (getModel().playerTwosTurn) {
+                handleComputerClick();
             }
+
 
 
         }
@@ -103,6 +165,7 @@ public class GameController {
         model.resetModelData();
         Arrays.fill(buttonClickedArray, false);
         enableButtons();
+
     }
 
     public void PlayAgainButtonClicked(MouseEvent mouseEvent) {
