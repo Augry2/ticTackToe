@@ -22,8 +22,8 @@ public class GameModel {
 
 
     /*when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed a int 1 is added to this list**/
-    private  List<Integer> playerPositionList = new ArrayList<>();
-    private  List<Integer> computerPositionList = new ArrayList<>();
+    private final List<Integer> playerPositionList = new ArrayList<>();
+    private final List<Integer> computerPositionList = new ArrayList<>(); // todo not sure why this is final
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
@@ -123,37 +123,37 @@ public class GameModel {
 
     // variables for all the buttons here
     private Button button1 = new Button("button1");
-    private StringProperty button1Property = button1.textProperty();
+    private final StringProperty button1Property = button1.textProperty();// todo how can these be final
 
     private Button button2 = new Button("button2");
-    private StringProperty button2Property = button2.textProperty();
+    private final StringProperty button2Property = button2.textProperty();
 
     private Button button3 = new Button("button3");
-    private StringProperty button3Property = button3.textProperty();
+    private final StringProperty button3Property = button3.textProperty();
 
     private Button button4 = new Button("button4");
-    private StringProperty button4Property = button4.textProperty();
+    private final StringProperty button4Property = button4.textProperty();
 
     private Button button5 = new Button("button5");
-    private StringProperty button5Property = button5.textProperty();
+    private final StringProperty button5Property = button5.textProperty();
 
     private Button button6 = new Button("button6");
-    private StringProperty button6Property = button6.textProperty();
+    private final StringProperty button6Property = button6.textProperty();
 
     private Button button7 = new Button("button7");
-    private StringProperty button7Property = button7.textProperty();
+    private final StringProperty button7Property = button7.textProperty();
 
     private Button button8 = new Button("button8");
-    private StringProperty button8Property = button8.textProperty();
+    private final StringProperty button8Property = button8.textProperty();
 
     private Button button9 = new Button("button9");
-    private StringProperty button9Property = button9.textProperty();
+    private final StringProperty button9Property = button9.textProperty();
 
     private Button exitProgramButton = new Button("exit program");
-    private StringProperty exitProgramButtonProperty = exitProgramButton.textProperty();
+    private final StringProperty exitProgramButtonProperty = exitProgramButton.textProperty();
 
     private Button playAgainButton = new Button("play again");
-    private StringProperty playAgainButtonProperty = playAgainButton.textProperty();
+    private final StringProperty playAgainButtonProperty = playAgainButton.textProperty();
 
 
 

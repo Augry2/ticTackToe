@@ -52,13 +52,13 @@ public class GameController {
     }
 
     public void handleComputerClick(){
-
+        // only needed here because the player will always click the last button
         if (areAllButtonsClicked(buttonClickedArray)){
             disableButtons();
             return;
         }
 
-        if (getModel().playerTwosTurn){ // if its the computers turn and nobody has won
+       // if (getModel().playerTwosTurn){
             Random random = new Random();
             int computerMove = random.nextInt(9)+1;
             boolean asdf = true;
@@ -72,31 +72,21 @@ public class GameController {
                     computerMove = random.nextInt(9)+1;
                 }
             }
-        }
+      //  }
     }
     private Button getButtonByNumber(int buttonNr){
-        switch (buttonNr){
-            case 1:
-                return button1;
-            case 2:
-                return button2;
-            case 3:
-                return button3;
-            case 4:
-                return button4;
-            case 5:
-                return button5;
-            case 6:
-                return button6;
-            case 7:
-                return button7;
-            case 8:
-                return button8;
-            case 9:
-                return button9;
-            default:
-                return null;
-        }
+        return switch (buttonNr) {
+            case 1 -> button1;
+            case 2 -> button2;
+            case 3 -> button3;
+            case 4 -> button4;
+            case 5 -> button5;
+            case 6 -> button6;
+            case 7 -> button7;
+            case 8 -> button8;
+            case 9 -> button9;
+            default -> null;
+        };
     }
 
     private boolean areAllButtonsClicked(boolean[] buttonClickedArray) {
