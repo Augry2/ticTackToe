@@ -110,7 +110,7 @@ public class GameController {
 
     public void handleButtonClick(Button button, int buttonNumber, boolean[] buttonClickedArray, List<Integer> playerPositionList, List<Integer> computerPositionList) {
 
-        if (!buttonClickedArray[buttonNumber-1]) { // (if buttonclicked is false) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
+        if (!buttonClickedArray[buttonNumber-1]) { // (run if the button is free) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
             if (getModel().playerOnesTurn) {
                 setButtonTextToO(button.textProperty());
                 getModel().setPlayerTwosTurn();
