@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**Containing methods that control what happens when a button is clicked*/
+/**
+ * Containing methods that control what happens when a button is clicked
+ */
 public class GameController {
 
     // controller contains buttons, the buttons are linked to the fxml file, the functionality of the buttons are kept in the model class
@@ -27,15 +29,17 @@ public class GameController {
     public Button playAgainButton;
     public Button exitProgramButton;
 
-
     boolean[] buttonClickedArray = new boolean[9]; // remembers which buttons has been clicked
 
     GameModel model = new GameModel();
-    public GameModel getModel(){
+
+    public GameModel getModel() {
         return model;
     }
 
-    /**binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file*/
+    /**
+     * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
+     */
     public void initialize() {
         model.button1PropertyProperty().bindBidirectional(button1.textProperty());
         model.button2PropertyProperty().bindBidirectional(button2.textProperty());
@@ -51,30 +55,35 @@ public class GameController {
 
     }
 
-    public void handleComputerClick(){
+    /**
+     * decides which button the computer will click
+     */
+    public void handleComputerClick() {
         // only needed here because the player will always click the last button
-        if (areAllButtonsClicked(buttonClickedArray)){
+        if (areAllButtonsClicked(buttonClickedArray)) {
             disableButtons();
             return;
         }
 
-       // if (getModel().playerTwosTurn){
-            Random random = new Random();
-            int computerMove = random.nextInt(9)+1;
-            boolean asdf = true;
+        Random random = new Random();
+        int computerMove = random.nextInt(9) + 1;
+        boolean invalidComputerMove = true;
 
-            while(asdf){
-                if (!buttonClickedArray[computerMove - 1]){
-                    handleButtonClick(getButtonByNumber(computerMove), computerMove, buttonClickedArray,
-                            getModel().getPlayerPositionList(), getModel().getComputerPositionList());
-                    asdf = false;
-                }else{
-                    computerMove = random.nextInt(9)+1;
-                }
+        while (invalidComputerMove) {
+            if (!buttonClickedArray[computerMove - 1]) {
+                handleButtonClick(getButtonByNumber(computerMove), computerMove, buttonClickedArray,
+                        getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+                invalidComputerMove = false;
+            } else {
+                computerMove = random.nextInt(9) + 1;
             }
-      //  }
+        }
     }
-    private Button getButtonByNumber(int buttonNr){
+
+    /**
+     * used by the handleComputerClick method to return a Button based on what number is input as parameter
+     */
+    private Button getButtonByNumber(int buttonNr) {
         return switch (buttonNr) {
             case 1 -> button1;
             case 2 -> button2;
@@ -89,6 +98,10 @@ public class GameController {
         };
     }
 
+    /**
+     * the program uses a list of booleans to check which buttons has been clicked, this method checks if
+     * there are any available buttons to click
+     */
     private boolean areAllButtonsClicked(boolean[] buttonClickedArray) {
         for (boolean buttonClicked : buttonClickedArray) {
             if (!buttonClicked) {
@@ -98,9 +111,12 @@ public class GameController {
         return true; // All buttons are clicked, return true
     }
 
+    /**
+     * functionality for what happens when the user or the computer clicks a button
+     */
     public void handleButtonClick(Button button, int buttonNumber, boolean[] buttonClickedArray, List<Integer> playerPositionList, List<Integer> computerPositionList) {
 
-        if (!buttonClickedArray[buttonNumber-1]) { // (run if the button is free) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
+        if (!buttonClickedArray[buttonNumber - 1]) { // (run if the button is free) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
             if (getModel().playerOnesTurn) {
                 setButtonTextToO(button.textProperty());
                 getModel().setPlayerTwosTurn();
@@ -110,24 +126,20 @@ public class GameController {
                 getModel().setPlayerOnesTurn();
                 computerPositionList.add(buttonNumber);
             }
-            buttonClickedArray[buttonNumber-1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
-
+            buttonClickedArray[buttonNumber - 1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
 
 
             // after the player has taken a turn, it checks if he or computer won, if nobody won the computer gets its turn
-            if (getModel().checkWin()){ // runs checkWin aswell as the if statement
+            if (getModel().checkWin()) { // runs checkWin aswell as the if statement
                 winnerAnounce.textProperty().set(model.getWinnerMessage());
                 disableButtons();
             } else if (getModel().playerTwosTurn) {
                 handleComputerClick();
             }
-
-
-
         }
     }
 
-    public void enableButtons(){
+    public void enableButtons() {
         button1.setDisable(false);
         button2.setDisable(false);
         button3.setDisable(false);
@@ -139,7 +151,7 @@ public class GameController {
         button9.setDisable(false);
     }
 
-    public void disableButtons(){
+    public void disableButtons() {
         button1.setDisable(true);
         button2.setDisable(true);
         button3.setDisable(true);
@@ -151,7 +163,7 @@ public class GameController {
         button9.setDisable(true);
     }
 
-    public void resetGame(){
+    public void resetGame() {
         model.resetModelData();
         Arrays.fill(buttonClickedArray, false);
         enableButtons();
@@ -202,10 +214,10 @@ public class GameController {
         handleButtonClick(button9, 9, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    /**method that changes text of the button*/
     public void setButtonTextToX(StringProperty buttonProperty) {
         buttonProperty.set("X");
     }
+
     public void setButtonTextToO(StringProperty buttonProperty) {
         buttonProperty.set("O");
     }
