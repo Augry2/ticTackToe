@@ -168,6 +168,7 @@ public class GameController {
     public void resetGame() {
         model.resetModelData();
         Arrays.fill(availableButtons, false);
+        winnerAnounce.setText("");
         enableButtons();
 
     }
