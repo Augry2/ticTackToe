@@ -29,9 +29,9 @@ public class GameController {
     public Button playAgainButton;
     public Button exitProgramButton;
 
-    boolean[] buttonClickedArray = new boolean[9]; // remembers which buttons has been clicked
+    boolean[] availableButtons = new boolean[9]; // remembers which buttons has been clicked
 
-    GameModel model = new GameModel();
+    private GameModel model = new GameModel();
 
     public GameModel getModel() {
         return model;
@@ -60,8 +60,9 @@ public class GameController {
      */
     public void handleComputerClick() {
         // only needed here because the player will always click the last button
-        if (areAllButtonsClicked(buttonClickedArray)) {
+        if (areAllButtonsClicked(availableButtons)) {
             disableButtons();
+            winnerAnounce.textProperty().set("The game was a tie" + "\n" + "Player: " + getModel().getPlayerWins() + "\n" + "Computer: " + getModel().getComputerWins());
             return;
         }
 
@@ -69,9 +70,10 @@ public class GameController {
         int computerMove = random.nextInt(9) + 1;
         boolean invalidComputerMove = true;
 
+        // keep generating numbers until an available button is found then puts it on the board
         while (invalidComputerMove) {
-            if (!buttonClickedArray[computerMove - 1]) {
-                handleButtonClick(getButtonByNumber(computerMove), computerMove, buttonClickedArray,
+            if (!availableButtons[computerMove - 1]) {
+                handleButtonClick(getButtonByNumber(computerMove), computerMove, availableButtons,
                         getModel().getPlayerPositionList(), getModel().getComputerPositionList());
                 invalidComputerMove = false;
             } else {
@@ -165,7 +167,7 @@ public class GameController {
 
     public void resetGame() {
         model.resetModelData();
-        Arrays.fill(buttonClickedArray, false);
+        Arrays.fill(availableButtons, false);
         enableButtons();
 
     }
@@ -179,39 +181,39 @@ public class GameController {
     }
 
     public void Button1Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button1, 1, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button1, 1, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button2, 2, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button2, 2, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button3Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button3, 3, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button3, 3, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button4Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button4, 4, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button4, 4, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button5Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button5, 5, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button5, 5, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button6Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button6, 6, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button6, 6, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button7Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button7, 7, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button7, 7, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button8Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button8, 8, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button8, 8, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button9Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button9, 9, buttonClickedArray, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button9, 9, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void setButtonTextToX(StringProperty buttonProperty) {

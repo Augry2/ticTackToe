@@ -17,9 +17,16 @@ public class GameModel {
     private String winner; // String containing who won the round
     private int playerWins; // contains total amount of wins
     private int computerWins;
-    private String WinnerMessage; // String to be printed out after each round
+    private String winnerMessage; // String to be printed out after each non-tie round
 
 
+    public int getPlayerWins() {
+        return playerWins;
+    }
+
+    public int getComputerWins() {
+        return computerWins;
+    }
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     private final List<Integer> playerPositionList = new ArrayList<>();
@@ -43,7 +50,7 @@ public class GameModel {
 
         // Reset winner and winner message
         winner = null;
-        WinnerMessage = null;
+        winnerMessage = null;
 
         // Reset button properties
         resetButtonText();
@@ -70,7 +77,7 @@ public class GameModel {
                 System.out.println("Player Won");
                 winner = "Player Won";
                 playerWins++;
-                WinnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+                winnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
                 return true;
             }
         }
@@ -79,10 +86,12 @@ public class GameModel {
                 System.out.println("Computer Won");
                 winner = "Computer Won";
                 computerWins++;
-                WinnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+                winnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
                 return true;
             }
         }
+
+
         return false;
     }
 
@@ -379,6 +388,6 @@ public class GameModel {
     }
 
     public String getWinnerMessage() {
-        return WinnerMessage;
+        return winnerMessage;
     }
 }
