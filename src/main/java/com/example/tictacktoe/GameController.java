@@ -15,6 +15,7 @@ import java.util.Random;
  */
 public class GameController {
 
+
     // controller contains buttons, the buttons are linked to the fxml file, the functionality of the buttons are kept in the model class
     public Button button1;
     public Button button2;
@@ -29,13 +30,14 @@ public class GameController {
     public Button playAgainButton;
     public Button exitProgramButton;
 
-    boolean[] availableButtons = new boolean[9]; // remembers which buttons has been clicked
+    boolean[] buttonsClicked = new boolean[9]; // remembers which buttons has been clicked
 
     private GameModel model = new GameModel();
 
     public GameModel getModel() {
         return model;
     }
+
 
     /**
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
@@ -59,12 +61,8 @@ public class GameController {
      * decides which button the computer will click
      */
     public void handleComputerClick() {
-        // only needed here because the player will always click the last button
-        if (areAllButtonsClicked(availableButtons)) {
-            disableButtons();
-            winnerAnounce.textProperty().set("The game was a tie" + "\n" + "Player: " + getModel().getPlayerWins() + "\n" + "Computer: " + getModel().getComputerWins());
-            return;
-        }
+        // if the game is a tie, the computer does not need to try to make a click so we return
+        if (gameIsaTie()) return;
 
         Random random = new Random();
         int computerMove = random.nextInt(9) + 1;
@@ -72,8 +70,8 @@ public class GameController {
 
         // keep generating numbers until an available button is found then puts it on the board
         while (invalidComputerMove) {
-            if (!availableButtons[computerMove - 1]) {
-                handleButtonClick(getButtonByNumber(computerMove), computerMove, availableButtons,
+            if (!buttonsClicked[computerMove - 1]) {
+                handleButtonClick(getButtonByNumber(computerMove), computerMove, buttonsClicked,
                         getModel().getPlayerPositionList(), getModel().getComputerPositionList());
                 invalidComputerMove = false;
             } else {
@@ -82,10 +80,19 @@ public class GameController {
         }
     }
 
+    private boolean gameIsaTie() {
+        if (areAllButtonsClicked(buttonsClicked)) {
+            disableButtons();
+            winnerAnounce.textProperty().set("The game was a tie" + "\n" + "Player: " + getModel().getPlayerWins() + "\n" + "Computer: " + getModel().getComputerWins());
+            return true;
+        }
+        return false;
+    }
+
     /**
      * used by the handleComputerClick method to return a Button based on what number is input as parameter
      */
-    private Button getButtonByNumber(int buttonNr) {
+    public Button getButtonByNumber(int buttonNr) {
         return switch (buttonNr) {
             case 1 -> button1;
             case 2 -> button2;
@@ -167,7 +174,7 @@ public class GameController {
 
     public void resetGame() {
         model.resetModelData();
-        Arrays.fill(availableButtons, false);
+        Arrays.fill(buttonsClicked, false);
         winnerAnounce.setText("");
         enableButtons();
 
@@ -182,39 +189,39 @@ public class GameController {
     }
 
     public void Button1Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button1, 1, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button1, 1, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button2Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button2, 2, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button2, 2, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button3Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button3, 3, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button3, 3, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button4Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button4, 4, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button4, 4, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button5Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button5, 5, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button5, 5, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button6Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button6, 6, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button6, 6, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button7Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button7, 7, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button7, 7, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button8Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button8, 8, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button8, 8, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void Button9Clicked(MouseEvent mouseEvent) {
-        handleButtonClick(button9, 9, availableButtons, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
+        handleButtonClick(button9, 9, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
     public void setButtonTextToX(StringProperty buttonProperty) {
@@ -226,4 +233,7 @@ public class GameController {
     }
 
 
+    public Button getButton1() {
+        return button1;
+    }
 }

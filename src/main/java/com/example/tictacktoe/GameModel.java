@@ -28,6 +28,7 @@ public class GameModel {
         return computerWins;
     }
 
+
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     private final List<Integer> playerPositionList = new ArrayList<>();
     private final List<Integer> computerPositionList = new ArrayList<>(); // todo not sure why this is final

@@ -1,9 +1,17 @@
 todo ----------------------------------------------------------
 
+
 1. add test for valid clicks
-    - test that proves a button can not be clicked more than once
+
+    - test for whose turn it is
+    - player position test
+    -
+
+    -------- come back to this, making tests for controller seems like bad idea --------
     . in the controller we could test if the correct element in avaliable buttons is set to true
     . or check if the button has been disabled, perhaps both
+
+    getter for buttonsclicked, then make a method in model that checks if a button has been clicked or not
 
 
 2. add test for if the round has been finished (String winner in model class contains the winner in string, maybe use this)
