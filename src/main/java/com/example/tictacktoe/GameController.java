@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public class GameController {
 
     boolean[] buttonsClicked = new boolean[9]; // remembers which buttons has been clicked
 
-    private GameModel model = new GameModel();
+    private final GameModel model = new GameModel();
 
     public GameModel getModel() {
         return model;
