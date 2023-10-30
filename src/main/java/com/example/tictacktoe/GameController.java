@@ -142,6 +142,7 @@ public class GameController {
                 getModel().setPlayerOnesTurn();
                 computerPositionList.add(buttonNumber);
 
+
             }
             buttonClickedArray[buttonNumber - 1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
 
