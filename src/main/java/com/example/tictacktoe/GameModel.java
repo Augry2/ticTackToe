@@ -30,8 +30,8 @@ public class GameModel {
 
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
-    private final List<Integer> playerPositionList = new ArrayList<>();
-    private final List<Integer> computerPositionList = new ArrayList<>(); // todo not sure why this is final
+    public  List<Integer> playerPositionList = new ArrayList<>();
+    public  List<Integer> computerPositionList = new ArrayList<>();
 
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
@@ -69,6 +69,10 @@ public class GameModel {
         button9.setText("");
     }
 
+    public String getWinner() {
+        return winner;
+    }
+
     /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
     public boolean checkWin() {
         List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
@@ -92,7 +96,7 @@ public class GameModel {
             }
         }
 
-
+        winner = "Nobody won"; // used for unit test
         return false;
     }
 
@@ -134,7 +138,7 @@ public class GameModel {
 
     // variables for all the buttons here
     private Button button1 = new Button("button1");
-    private final StringProperty button1Property = button1.textProperty();// todo how can these be final
+    private final StringProperty button1Property = button1.textProperty();
 
     private Button button2 = new Button("button2");
     private final StringProperty button2Property = button2.textProperty();

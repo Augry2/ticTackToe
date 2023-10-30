@@ -3,6 +3,7 @@ package com.example.tictacktoe;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -17,18 +18,18 @@ public class GameController {
 
 
     // controller contains buttons, the buttons are linked to the fxml file, the functionality of the buttons are kept in the model class
-    public Button button1;
-    public Button button2;
-    public Button button3;
-    public Button button4;
-    public Button button5;
-    public Button button6;
-    public Button button7;
-    public Button button8;
-    public Button button9;
-    public Label winnerAnounce; // should be visible when a winner is decided
-    public Button playAgainButton;
-    public Button exitProgramButton;
+    public Button button1 = new Button();
+    public Button button2 = new Button();
+    public Button button3 = new Button();
+    public Button button4 = new Button();
+    public Button button5 = new Button();
+    public Button button6 = new Button();
+    public Button button7 = new Button();
+    public Button button8 = new Button();
+    public Button button9 = new Button();
+    public Label winnerAnounce = new Label(); // should be visible when a winner is decided
+    public Button playAgainButton = new Button();
+    public Button exitProgramButton = new Button();
 
     boolean[] buttonsClicked = new boolean[9]; // remembers which buttons has been clicked
 
@@ -80,7 +81,11 @@ public class GameController {
         }
     }
 
-    private boolean gameIsaTie() {
+    public boolean[] getButtonsClicked() {
+        return buttonsClicked;
+    }
+
+    public boolean gameIsaTie() { // todo should preferrably be inside the model somehow
         if (areAllButtonsClicked(buttonsClicked)) {
             disableButtons();
             winnerAnounce.textProperty().set("The game was a tie" + "\n" + "Player: " + getModel().getPlayerWins() + "\n" + "Computer: " + getModel().getComputerWins());
@@ -120,6 +125,7 @@ public class GameController {
         return true; // All buttons are clicked, return true
     }
 
+    // todo we can remove the playerposition and comp position and directly set getmodel.add etc
     /**
      * functionality for what happens when the user or the computer clicks a button
      */
@@ -130,10 +136,12 @@ public class GameController {
                 setButtonTextToO(button.textProperty());
                 getModel().setPlayerTwosTurn();
                 playerPositionList.add(buttonNumber); // adds the position of the button into the list in the model
+
             } else {
                 setButtonTextToX(button.textProperty());
                 getModel().setPlayerOnesTurn();
                 computerPositionList.add(buttonNumber);
+
             }
             buttonClickedArray[buttonNumber - 1] = true; // need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
 
@@ -188,7 +196,7 @@ public class GameController {
         Platform.exit();
     }
 
-    public void Button1Clicked(MouseEvent mouseEvent) {
+    public void Button1Clicked() {
         handleButtonClick(button1, 1, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
