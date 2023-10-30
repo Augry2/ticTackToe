@@ -37,7 +37,7 @@ class GameControllerTest {
         List<Integer> playerPositionList = controller.getModel().getPlayerPositionList();
         List<Integer> computerPositionList = controller.getModel().getComputerPositionList();
 
-        controller.handleButtonClick(button1,1,buttonsClicked, playerPositionList, computerPositionList);
+        controller.handleButtonClick(button1, 1, buttonsClicked, playerPositionList, computerPositionList);
 
         assertTrue(buttonsClicked[0]);
     }
@@ -50,18 +50,12 @@ class GameControllerTest {
         List<Integer> playerPositionList = controller.getModel().getPlayerPositionList();
         List<Integer> computerPositionList = controller.getModel().getComputerPositionList();
 
-        controller.handleButtonClick(button1,1,buttonsClicked, playerPositionList, computerPositionList);
+        controller.handleButtonClick(button1, 1, buttonsClicked, playerPositionList, computerPositionList);
         assertEquals("O", button1.getText());
         assertTrue(buttonsClicked[0]);
 
-        controller.handleButtonClick(button1,1,buttonsClicked, playerPositionList, computerPositionList);
+        controller.handleButtonClick(button1, 1, buttonsClicked, playerPositionList, computerPositionList);
         assertTrue(buttonsClicked[0]);
         assertEquals("O", button1.getText());
     }
-
-
-
-
-
-
 }
