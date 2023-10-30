@@ -3,7 +3,7 @@ package com.example.tictacktoe;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -188,11 +188,11 @@ public class GameController {
 
     }
 
-    public void PlayAgainButtonClicked(MouseEvent mouseEvent) {
+    public void PlayAgainButtonClicked() {
         resetGame();
     }
 
-    public void ExitProgramButtonClicked(MouseEvent mouseEvent) {
+    public void ExitProgramButtonClicked() {
         Platform.exit();
     }
 
@@ -200,35 +200,35 @@ public class GameController {
         handleButtonClick(button1, 1, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button2Clicked(MouseEvent mouseEvent) {
+    public void Button2Clicked() {
         handleButtonClick(button2, 2, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button3Clicked(MouseEvent mouseEvent) {
+    public void Button3Clicked() {
         handleButtonClick(button3, 3, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button4Clicked(MouseEvent mouseEvent) {
+    public void Button4Clicked() {
         handleButtonClick(button4, 4, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button5Clicked(MouseEvent mouseEvent) {
+    public void Button5Clicked() {
         handleButtonClick(button5, 5, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button6Clicked(MouseEvent mouseEvent) {
+    public void Button6Clicked() {
         handleButtonClick(button6, 6, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button7Clicked(MouseEvent mouseEvent) {
+    public void Button7Clicked() {
         handleButtonClick(button7, 7, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button8Clicked(MouseEvent mouseEvent) {
+    public void Button8Clicked() {
         handleButtonClick(button8, 8, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
-    public void Button9Clicked(MouseEvent mouseEvent) {
+    public void Button9Clicked() {
         handleButtonClick(button9, 9, buttonsClicked, getModel().getPlayerPositionList(), getModel().getComputerPositionList());
     }
 
@@ -241,7 +241,4 @@ public class GameController {
     }
 
 
-    public Button getButton1() {
-        return button1;
-    }
 }
