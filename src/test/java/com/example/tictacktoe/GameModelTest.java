@@ -36,7 +36,7 @@ GameController controller;
         playerPos.add(2);
         playerPos.add(3);
 
-        assertTrue(model.checkWin());
+        assertTrue(model.checkEndRound());
         assertTrue(model.getWinner().contains("Player Won"));
     }
 
@@ -48,7 +48,7 @@ GameController controller;
         computerPos.add(2);
         computerPos.add(3);
 
-        assertTrue(model.checkWin());
+        assertTrue(model.checkEndRound());
         assertTrue(model.getWinner().contains("Computer Won"));
     }
 
@@ -70,8 +70,8 @@ GameController controller;
         computerPos.add(8);
         computerPos.add(9);
 
-        assertFalse(model.checkWin());
-        assertTrue(model.getWinner().contains("Nobody won"));
+        assertTrue(model.checkEndRound());
+        assertTrue(model.getWinnerMessage().contains("Game is a tie"));
     }
 
 

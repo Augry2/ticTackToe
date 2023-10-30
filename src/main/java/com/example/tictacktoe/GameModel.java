@@ -75,7 +75,7 @@ public class GameModel {
     }
 
     /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
-    public boolean checkWin() {
+    public boolean checkEndRound() {
         List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
 
         for (List current : winCons) {
@@ -96,6 +96,14 @@ public class GameModel {
                 return true;
             }
         }
+
+        int playerPlusComputerCounter = playerPositionList.size() + computerPositionList.size();
+        if (playerPlusComputerCounter == 9){
+            winnerMessage = "Game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+            return true;
+        }
+
+
         System.out.println(playerPositionList.size());
         System.out.println(computerPositionList.size());
         winner = "Nobody won"; // used for unit test

@@ -62,8 +62,6 @@ public class GameController {
      * decides which button the computer will click
      */
     public void handleComputerClick() {
-        // if the game is a tie, the computer does not need to try to make a click so we return
-        if (gameIsaTie()) return;
 
         Random random = new Random();
         int computerMove = random.nextInt(9) + 1;
@@ -85,14 +83,6 @@ public class GameController {
         return buttonsClicked;
     }
 
-    public boolean gameIsaTie() { // todo should preferrably be inside the model somehow
-        if (areAllButtonsClicked(buttonsClicked)) {
-            disableButtons();
-            winnerAnounce.textProperty().set("The game was a tie" + "\n" + "Player: " + getModel().getPlayerWins() + "\n" + "Computer: " + getModel().getComputerWins());
-            return true;
-        }
-        return false;
-    }
 
     /**
      * used by the handleComputerClick method to return a Button based on what number is input as parameter
@@ -148,7 +138,7 @@ public class GameController {
 
 
             // after the player has taken a turn, it checks if he or computer won, if nobody won the computer gets its turn
-            if (getModel().checkWin()) { // runs checkWin aswell as the if statement
+            if (getModel().checkEndRound()) { // runs checkWin aswell as the if statement
                 winnerAnounce.textProperty().set(model.getWinnerMessage());
                 disableButtons();
             } else if (getModel().playerTwosTurn) {
