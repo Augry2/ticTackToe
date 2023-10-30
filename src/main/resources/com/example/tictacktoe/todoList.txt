@@ -14,7 +14,7 @@ todo ----------------------------------------------------------
 ✓    - test that proves that it can be a tie
 
 
-
+ändra så om playerpositionlist är 4 och computer list är 5 så är det en tie
 
 
 

@@ -36,8 +36,7 @@ GameController controller;
         playerPos.add(2);
         playerPos.add(3);
 
-        model.checkWin();
-
+        assertTrue(model.checkWin());
         assertTrue(model.getWinner().contains("Player Won"));
     }
 
@@ -49,8 +48,7 @@ GameController controller;
         computerPos.add(2);
         computerPos.add(3);
 
-        model.checkWin();
-
+        assertTrue(model.checkWin());
         assertTrue(model.getWinner().contains("Computer Won"));
     }
 

@@ -43,8 +43,8 @@ class GameControllerTest {
     }
 
     @Test
-    @DisplayName("button can only be pressed once")
-    void buttonCanOnlyBePressedOnce() {
+    @DisplayName("button does not change values if spam clicked on")
+    void buttonDoesNotChangeValuesIfSpamClickedOn() {
         Button button1 = controller.button1;
         boolean[] buttonsClicked = controller.getButtonsClicked();
         List<Integer> playerPositionList = controller.getModel().getPlayerPositionList();

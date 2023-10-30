@@ -96,7 +96,8 @@ public class GameModel {
                 return true;
             }
         }
-
+        System.out.println(playerPositionList.size());
+        System.out.println(computerPositionList.size());
         winner = "Nobody won"; // used for unit test
         return false;
     }
