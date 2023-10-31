@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 
 import java.util.Arrays;
@@ -44,18 +45,17 @@ public class GameController {
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
      */
     public void initialize() {
-        model.button1PropertyProperty().bindBidirectional(button1.textProperty());
-        model.button2PropertyProperty().bindBidirectional(button2.textProperty());
-        model.button3PropertyProperty().bindBidirectional(button3.textProperty());
-        model.button4PropertyProperty().bindBidirectional(button4.textProperty());
-        model.button5PropertyProperty().bindBidirectional(button5.textProperty());
-        model.button6PropertyProperty().bindBidirectional(button6.textProperty());
-        model.button7PropertyProperty().bindBidirectional(button7.textProperty());
-        model.button8PropertyProperty().bindBidirectional(button8.textProperty());
-        model.button9PropertyProperty().bindBidirectional(button9.textProperty());
-        model.playAgainButtonPropertyProperty().bindBidirectional(playAgainButton.textProperty());
-        model.exitProgramButtonPropertyProperty().bindBidirectional(exitProgramButton.textProperty());
-
+        button1.textProperty().bind(model.button1PropertyProperty());
+        button2.textProperty().bind(model.button2PropertyProperty());
+        button3.textProperty().bind(model.button3PropertyProperty());
+        button4.textProperty().bind(model.button4PropertyProperty());
+        button5.textProperty().bind(model.button5PropertyProperty());
+        button6.textProperty().bind(model.button6PropertyProperty());
+        button7.textProperty().bind(model.button7PropertyProperty());
+        button8.textProperty().bind(model.button8PropertyProperty());
+        button9.textProperty().bind(model.button9PropertyProperty());
+        playAgainButton.textProperty().bind(model.playAgainButtonPropertyProperty());
+        exitProgramButton.textProperty().bind(model.exitProgramButtonPropertyProperty());
     }
 
     /**
@@ -115,7 +115,7 @@ public class GameController {
         return true; // All buttons are clicked, return true
     }
 
-    // todo we can remove the playerposition and comp position and directly set getmodel.add etc
+
     /**
      * functionality for what happens when the user or the computer clicks a button
      */
@@ -123,12 +123,13 @@ public class GameController {
 
         if (!buttonClickedArray[buttonNumber - 1]) { // (run if the button is free) need to set this to -1 because the buttons start at 1 - 10, and the boolean array starts at 0 - 9
             if (getModel().playerOnesTurn) {
-                setButtonTextToO(button.textProperty());
+                model.button1PropertyProperty().set("O");
+                //button.setText("O");
                 getModel().setPlayerTwosTurn();
                 playerPositionList.add(buttonNumber); // adds the position of the button into the list in the model
 
             } else {
-                setButtonTextToX(button.textProperty());
+                model.button1PropertyProperty().set("X");
                 getModel().setPlayerOnesTurn();
                 computerPositionList.add(buttonNumber);
 

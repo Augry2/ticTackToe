@@ -1,5 +1,6 @@
 package com.example.tictacktoe;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
@@ -59,7 +60,18 @@ public class GameModel {
     }
 
     private void resetButtonText() {
-        button1.setText("");
+        button1Property.set("");
+        button2Property.set("");
+        button3Property.set("");
+        button4Property.set("");
+        button5Property.set("");
+        button6Property.set("");
+        button7Property.set("");
+        button8Property.set("");
+        button9Property.set("");
+        button9Property.set("");
+        button9Property.set("");
+        /*
         button2.setText("");
         button3.setText("");
         button4.setText("");
@@ -68,6 +80,8 @@ public class GameModel {
         button7.setText("");
         button8.setText("");
         button9.setText("");
+
+         */
     }
 
     public String getWinner() {
@@ -147,38 +161,37 @@ public class GameModel {
 
 
     // variables for all the buttons here
-    private final Button button1 = new Button("button1");
-    private final StringProperty button1Property = button1.textProperty();
+    private final StringProperty button1Property = new SimpleStringProperty("");
 
-    private final Button button2 = new Button("button2");
-    private final StringProperty button2Property = button2.textProperty();
 
-    private final Button button3 = new Button("button3");
-    private final StringProperty button3Property = button3.textProperty();
+    private final StringProperty button2Property = new SimpleStringProperty("");
 
-    private final Button button4 = new Button("button4");
-    private final StringProperty button4Property = button4.textProperty();
 
-    private final Button button5 = new Button("button5");
-    private final StringProperty button5Property = button5.textProperty();
+    private final StringProperty button3Property = new SimpleStringProperty("");
 
-    private final Button button6 = new Button("button6");
-    private final StringProperty button6Property = button6.textProperty();
 
-    private final Button button7 = new Button("button7");
-    private final StringProperty button7Property = button7.textProperty();
+    private final StringProperty button4Property = new SimpleStringProperty("");
 
-    private final Button button8 = new Button("button8");
-    private final StringProperty button8Property = button8.textProperty();
 
-    private final Button button9 = new Button("button9");
-    private final StringProperty button9Property = button9.textProperty();
+    private final StringProperty button5Property = new SimpleStringProperty("");
 
-    private final Button exitProgramButton = new Button("exit program");
-    private final StringProperty exitProgramButtonProperty = exitProgramButton.textProperty();
 
-    private final Button playAgainButton = new Button("play again");
-    private final StringProperty playAgainButtonProperty = playAgainButton.textProperty();
+    private final StringProperty button6Property = new SimpleStringProperty("");
+
+
+    private final StringProperty button7Property = new SimpleStringProperty("");
+
+
+    private final StringProperty button8Property = new SimpleStringProperty("");
+
+
+    private final StringProperty button9Property = new SimpleStringProperty("");
+
+
+    private final StringProperty exitProgramButtonProperty = new SimpleStringProperty("Exit program");
+
+
+    private final StringProperty playAgainButtonProperty = new SimpleStringProperty("Play again");
 
 
     public StringProperty exitProgramButtonPropertyProperty() {
