@@ -2,11 +2,11 @@ package com.example.tictacktoe;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * contains the data and logic behind the game
@@ -69,19 +69,118 @@ public class GameModel {
         button7Property.set("");
         button8Property.set("");
         button9Property.set("");
-        button9Property.set("");
-        button9Property.set("");
-        /*
-        button2.setText("");
-        button3.setText("");
-        button4.setText("");
-        button5.setText("");
-        button6.setText("");
-        button7.setText("");
-        button8.setText("");
-        button9.setText("");
+    }
 
-         */
+    public void buttonClick(int i) {
+        if (checkEndRound())
+            return;
+
+        if (playerOnesTurn) {
+            if (buttonIsValid(i)) {
+                switch (i) {
+                    case 1:
+                        button1Property.set("O");
+                        playerPositionList.add(1);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 2:
+                        button2Property.set("O");
+                        playerPositionList.add(2);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 3:
+                        button3Property.set("O");
+                        playerPositionList.add(3);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 4:
+                        button4Property.set("O");
+                        playerPositionList.add(4);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 5:
+                        button5Property.set("O");
+                        playerPositionList.add(5);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 6:
+                        button6Property.set("O");
+                        playerPositionList.add(6);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 7:
+                        button7Property.set("O");
+                        playerPositionList.add(7);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 8:
+                        button8Property.set("O");
+                        playerPositionList.add(8);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                    case 9:
+                        button9Property.set("O");
+                        playerPositionList.add(9);
+                        setPlayerTwosTurn();
+                        checkEndRound();
+                        break;
+                }
+
+            }
+
+            if (playerTwosTurn) {
+                if (playerPositionList.size() + computerPositionList.size() == 9)
+                    return;
+                randomButtonClick();
+                setPlayerOnesTurn();
+                checkEndRound();
+            }
+        }
+    }
+
+
+    public void randomButtonClick() {
+        Random random = new Random();
+        int randomNumber;
+        StringProperty randomButtonProperty;
+
+        do {
+            randomNumber = random.nextInt(9) + 1;
+            randomButtonProperty = getButtonPropertyByNumber(randomNumber);
+        } while (!buttonIsValid(randomNumber));
+
+        randomButtonProperty.set("X");
+        computerPositionList.add(randomNumber);
+    }
+
+    public boolean buttonIsValid(int number) {
+        if (playerPositionList.contains(number) || computerPositionList.contains(number)) {
+            return false;
+        }
+        return true;
+    }
+
+    public StringProperty getButtonPropertyByNumber(int randomNumber) {
+        return switch (randomNumber) {
+            case 1 -> button1Property;
+            case 2 -> button2Property;
+            case 3 -> button3Property;
+            case 4 -> button4Property;
+            case 5 -> button5Property;
+            case 6 -> button6Property;
+            case 7 -> button7Property;
+            case 8 -> button8Property;
+            case 9 -> button9Property;
+            default -> null;
+        };
     }
 
     public String getWinner() {
@@ -112,11 +211,11 @@ public class GameModel {
         }
 
         int playerPlusComputerCounter = playerPositionList.size() + computerPositionList.size();
-        if (playerPlusComputerCounter == 9){
+        if (playerPlusComputerCounter == 9) {
+            System.out.println("tie");
             winnerMessage = "Game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
             return true;
         }
-
 
         System.out.println(playerPositionList.size());
         System.out.println(computerPositionList.size());

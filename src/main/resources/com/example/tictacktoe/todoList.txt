@@ -1,17 +1,19 @@
 todo ----------------------------------------------------------
 
+
+
 1. add test for valid clicks
-✓ can a button be clicked
-✓ can a button be clicked more than once
+ can a button be clicked
+ can a button be clicked more than once
 
 
 2. add test for if the round has been finished (String winner in model class contains the winner in string, maybe use this)
 
     - test that proves that the round is finished
 
-✓    - test that proves that player can win
-✓    - test that proves that computer can win
-✓    - test that proves that it can be a tie
+    - test that proves that player can win
+    - test that proves that computer can win
+    - test that proves that it can be a tie
 
 
 ändra så om playerpositionlist är 4 och computer list är 5 så är det en tie
