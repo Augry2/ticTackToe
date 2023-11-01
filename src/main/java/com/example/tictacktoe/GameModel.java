@@ -21,13 +21,13 @@ public class GameModel {
     private boolean playerWonTheRound = false;
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
-    public List<Integer> playerPositionList = new ArrayList<>();
-    public List<Integer> computerPositionList = new ArrayList<>();
+    private List<Integer> playerPositionList = new ArrayList<>();
+    private List<Integer> computerPositionList = new ArrayList<>();
 
-    public List<Integer> getPlayerPositionList() {
+    private List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-    public List<Integer> getComputerPositionList() {
+    private List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
 
@@ -138,7 +138,7 @@ public class GameModel {
     /**
      * clicks a random button that has not already been selected
      */
-    public void randomButtonClick() {
+    private void randomButtonClick() {
         Random random = new Random();
         int randomNumber;
         StringProperty randomButtonProperty;
@@ -155,14 +155,14 @@ public class GameModel {
     /**
      * checks if a button is already clicked
      */
-    public boolean buttonIsValid(int number) {
+    private boolean buttonIsValid(int number) {
         return !playerPositionList.contains(number) && !computerPositionList.contains(number);
     }
 
     /**
      * returns a StringProperty based on which number is sent in, 1 resembles StringProperty for button1
      */
-    public StringProperty getButtonPropertyByNumber(int randomNumber) {
+    private StringProperty getButtonPropertyByNumber(int randomNumber) {
         return switch (randomNumber) {
             case 1 -> button1;
             case 2 -> button2;
@@ -181,7 +181,7 @@ public class GameModel {
     /**
      * method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result
      */
-    public boolean checkEndRound() {
+    private boolean checkEndRound() {
         List<List> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List current : winCons) {
@@ -235,13 +235,13 @@ public class GameModel {
     }
 
 
-    public void setPlayerTwosTurn() {
+    private void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
     }
 
 
-    public void setPlayerOnesTurn() {
+    private void setPlayerOnesTurn() {
         playerTwosTurn = false;
         playerOnesTurn = true;
     }
