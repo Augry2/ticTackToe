@@ -39,12 +39,7 @@ public class GameModel {
         playerOnesTurn = true;
         playerTwosTurn = false;
 
-        // Reset winner and winner message
-
-        winnerMessage = null;
-
         playerWonTheRound = false;
-
 
         // Reset button properties
         resetButtonText();
