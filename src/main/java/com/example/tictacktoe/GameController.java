@@ -29,10 +29,6 @@ public class GameController {
 
     private final GameModel model = new GameModel();
 
-    public GameModel getModel() {
-        return model;
-    }
-
 
     /**
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
