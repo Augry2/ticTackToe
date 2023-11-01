@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameModelTest {
+    GameModel model = new GameModel();
 
     @Test
     @DisplayName("button can only be clicked once")
     void buttonCanOnlyBeClickedOnce() {
-        GameModel model = new GameModel();
 
         model.buttonClick(1);
         model.buttonClick(1);
@@ -23,7 +23,6 @@ class GameModelTest {
     @Test
     @DisplayName("computer clicks are generated after a player clicks a button")
     void computerClicksAreGeneratedAfterAPlayerClicksAButton() {
-        GameModel model = new GameModel();
 
         assertTrue(model.getComputerPositionList().isEmpty());
 
@@ -35,7 +34,6 @@ class GameModelTest {
     @Test
     @DisplayName("button clicks are saved")
     void buttonClicksAreSaved() {
-        GameModel model = new GameModel();
 
         assertTrue(model.getPlayerPositionList().isEmpty());
 
@@ -47,7 +45,6 @@ class GameModelTest {
     @Test
     @DisplayName("player can win a round")
     void playerCanWinARound() {
-        GameModel model = new GameModel();
 
         model.getPlayerPositionList().add(1);
         model.getPlayerPositionList().add(2);
@@ -60,7 +57,6 @@ class GameModelTest {
     @Test
     @DisplayName("computer can win a round")
     void computerCanWinARound() {
-        GameModel model = new GameModel();
 
         model.getComputerPositionList().add(1);
         model.getComputerPositionList().add(2);
@@ -73,7 +69,6 @@ class GameModelTest {
     @Test
     @DisplayName("game can be a tie")
     void gameCanBeATie() {
-        GameModel model = new GameModel();
 
         model.getPlayerPositionList().add(1);
         model.getComputerPositionList().add(2);
