@@ -3,10 +3,7 @@ package com.example.tictacktoe;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * contains the data and logic behind the game
@@ -148,15 +145,15 @@ public class GameModel {
         List<List<Integer>> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List<Integer> current : winCons) {
-            if (playerPositionList.containsAll(current)) {
+            if (new HashSet<>(playerPositionList).containsAll(current)) {
                 playerWins++;
                 playerWonTheRound = true;
                 winnerAnnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
         }
-        for (List current : winCons) {
-            if (computerPositionList.containsAll(current)) {
+        for (List<Integer> current : winCons) {
+            if (new HashSet<>(computerPositionList).containsAll(current)) {
                 computerWins++;
                 winnerAnnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
