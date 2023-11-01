@@ -145,9 +145,9 @@ public class GameModel {
      * method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result
      */
     public boolean checkEndRound() {
-        List<List> winCons = getLists(); // creates a list containing all the different win-conditions
+        List<List<Integer>> winCons = getLists(); // creates a list containing all the different win-conditions
 
-        for (List current : winCons) {
+        for (List<Integer> current : winCons) {
             if (playerPositionList.containsAll(current)) {
                 playerWins++;
                 playerWonTheRound = true;
@@ -175,7 +175,7 @@ public class GameModel {
     /**
      * returns a list with all the different win conditions for the game
      */
-    private static List<List> getLists() {
+    private static List<List<Integer>> getLists() {
         List<Integer> topRow = Arrays.asList(1, 2, 3);
         List<Integer> midRow = Arrays.asList(4, 5, 6);
         List<Integer> botRow = Arrays.asList(7, 8, 9);
@@ -184,7 +184,7 @@ public class GameModel {
         List<Integer> rightCol = Arrays.asList(3, 6, 9);
         List<Integer> cross1 = Arrays.asList(1, 5, 9);
         List<Integer> cross2 = Arrays.asList(3, 5, 7);
-        List<List> winCons = new ArrayList<>();
+        List<List<Integer>> winCons = new ArrayList<>();
         winCons.add(topRow);
         winCons.add(midRow);
         winCons.add(botRow);
