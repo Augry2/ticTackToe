@@ -10,7 +10,6 @@ todo ----------------------------------------------------------
 2. add test for if the round has been finished (String winner in model class contains the winner in string, maybe use this)
 
     - test that proves that the round is finished
-
     - test that proves that player can win
     - test that proves that computer can win
     - test that proves that it can be a tie
@@ -26,3 +25,16 @@ todo ----------------------------------------------------------
     - bind button in controller initialize with string property in model
     - auto generate onmouseclicked methods in xml file
 ---------------------------------------------------------------
+ skapa fake gui för test om man tex ska testa själva knapparna i viewn
+ @BeforeAll
+    public static void initJavaFX() {
+        // Initialize JavaFX Toolkit
+        Platform.startup(() -> {
+        });
+    }
+
+    @BeforeEach
+    public void setUp() {
+        controller = new GameController(); // Initialize the controller before each test
+        controller.initialize(); // Call initialize() method manually to bind buttons
+    }

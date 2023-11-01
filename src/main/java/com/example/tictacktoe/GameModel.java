@@ -179,9 +179,7 @@ public class GameModel {
         };
     }
 
-    public String getWinner() {
-        return winner;
-    }
+
 
     /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
     public boolean checkEndRound() {

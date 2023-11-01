@@ -1,77 +1,92 @@
 package com.example.tictacktoe;
 
-import javafx.application.Platform;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameModelTest {
-GameModel model;
-GameController controller;
-    @BeforeAll
-    public static void initJavaFX() {
-        // Initialize JavaFX Toolkit
-        Platform.startup(() -> {
-        });
-    }
-    @BeforeEach
-    public void setUp() {
-        model = new GameModel();
-        controller = new GameController();
-        controller.initialize();
+
+    @Test
+    @DisplayName("button can only be clicked once")
+    void buttonCanOnlyBeClickedOnce() {
+        GameModel model = new GameModel();
+
+        model.buttonClick(1);
+        model.buttonClick(1);
+        model.buttonClick(1);
+
+        assertTrue(model.getPlayerPositionList().size() == 1);
+        assertTrue(model.getComputerPositionList().size() == 1);
+
     }
 
     @Test
-    @DisplayName("player wins if he has three in a row")
-    void playerWinsIfHeHasThreeInARow() {
-        List<Integer> playerPos = model.getPlayerPositionList();
-        playerPos.add(1);
-        playerPos.add(2);
-        playerPos.add(3);
+    @DisplayName("computer clicks are generated after a player clicks a button")
+    void computerClicksAreGeneratedAfterAPlayerClicksAButton() {
+        GameModel model = new GameModel();
 
-        assertTrue(model.checkEndRound());
-        assertTrue(model.getWinner().contains("Player Won"));
+        assertTrue(model.getComputerPositionList().isEmpty());
+
+        model.buttonClick(1);
+
+        assertFalse(model.getComputerPositionList().isEmpty());
     }
 
     @Test
-    @DisplayName("computer wins if he gets three in a row")
-    void computerWinsIfHeGetsThreeInARow() {
-        List<Integer> computerPos = model.getComputerPositionList();
-        computerPos.add(1);
-        computerPos.add(2);
-        computerPos.add(3);
+    @DisplayName("button clicks are saved")
+    void buttonClicksAreSaved() {
+        GameModel model = new GameModel();
 
-        assertTrue(model.checkEndRound());
-        assertTrue(model.getWinner().contains("Computer Won"));
+        assertTrue(model.getPlayerPositionList().isEmpty());
+
+        model.buttonClick(1);
+
+        assertTrue(model.getPlayerPositionList().contains(1));
     }
 
     @Test
-    @DisplayName("round ends if program runs out of buttons")
-    void roundEndsIfProgramRunsOutOfButtons() {
-        List<Integer> playerPos = model.getPlayerPositionList();
-        List<Integer> computerPos = model.getComputerPositionList();
-        // row 1
-        playerPos.add(1);
-        playerPos.add(2);
-        computerPos.add(3);
-        // row 2
-        computerPos.add(4);
-        computerPos.add(5);
-        playerPos.add(6);
-         // row 3
-        playerPos.add(7);
-        computerPos.add(8);
-        computerPos.add(9);
+    @DisplayName("player can win a round")
+    void playerCanWinARound() {
+        GameModel model = new GameModel();
+
+        model.getPlayerPositionList().add(1);
+        model.getPlayerPositionList().add(2);
+        model.getPlayerPositionList().add(3);
 
         assertTrue(model.checkEndRound());
-        assertTrue(model.getWinnerMessage().contains("Game is a tie"));
+        assertTrue(model.winnerAnounceProperty().get().contains("Player Won"));
+    }
+
+    @Test
+    @DisplayName("computer can win a round")
+    void computerCanWinARound() {
+        GameModel model = new GameModel();
+
+        model.getComputerPositionList().add(1);
+        model.getComputerPositionList().add(2);
+        model.getComputerPositionList().add(3);
+
+        assertTrue(model.checkEndRound());
+        assertTrue(model.winnerAnounceProperty().get().contains("Computer Won"));
+    }
+
+    @Test
+    @DisplayName("game can be a tie")
+    void gameCanBeATie() {
+        GameModel model = new GameModel();
+
+        model.getPlayerPositionList().add(1);
+        model.getComputerPositionList().add(2);
+        model.getPlayerPositionList().add(3);
+        model.getComputerPositionList().add(4);
+        model.getComputerPositionList().add(5);
+        model.getPlayerPositionList().add(6);
+        model.getComputerPositionList().add(7);
+        model.getPlayerPositionList().add(8);
+        model.getComputerPositionList().add(9);
+
+        assertTrue(model.checkEndRound());
+        assertTrue(model.winnerAnounceProperty().get().contains("The game is a tie"));
     }
 
 
