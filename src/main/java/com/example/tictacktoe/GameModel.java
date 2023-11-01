@@ -15,12 +15,12 @@ public class GameModel {
 
     public boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
     public boolean playerTwosTurn = false;                                                                            // the other one should be set to true
-    private String winner; // String containing who won the round
+
     private int playerWins; // contains total amount of wins
     private int computerWins;
     private String winnerMessage; // String to be printed out after each non-tie round
     private boolean playerWonTheRound = false;
-    private boolean computerWonTheRound = false;
+
 
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
@@ -43,11 +43,11 @@ public class GameModel {
         playerTwosTurn = false;
 
         // Reset winner and winner message
-        winner = null;
+
         winnerMessage = null;
 
         playerWonTheRound = false;
-        computerWonTheRound = false;
+
 
         // Reset button properties
         resetButtonText();
@@ -158,10 +158,7 @@ public class GameModel {
     }
 
     public boolean buttonIsValid(int number) {
-        if (playerPositionList.contains(number) || computerPositionList.contains(number)) {
-            return false;
-        }
-        return true;
+        return !playerPositionList.contains(number) && !computerPositionList.contains(number);
     }
 
     public StringProperty getButtonPropertyByNumber(int randomNumber) {
@@ -198,7 +195,7 @@ public class GameModel {
             if (computerPositionList.containsAll(current)) {
                 System.out.println("Computer Won");
                 computerWins++;
-                computerWonTheRound = true;
+
                 winnerAnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
@@ -213,7 +210,6 @@ public class GameModel {
 
         System.out.println(playerPositionList.size());
         System.out.println(computerPositionList.size());
-        winner = "Nobody won"; // used for unit test
         return false;
     }
 
@@ -309,10 +305,6 @@ public class GameModel {
 
     public StringProperty button9Property() {
         return button9;
-    }
-
-    public String getWinnerMessage() {
-        return winnerMessage;
     }
 
     public StringProperty winnerAnounceProperty() {
