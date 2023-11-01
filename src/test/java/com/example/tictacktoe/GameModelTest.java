@@ -15,8 +15,8 @@ class GameModelTest {
         model.buttonClick(1);
         model.buttonClick(1);
 
-        assertTrue(model.getPlayerPositionList().size() == 1);
-        assertTrue(model.getComputerPositionList().size() == 1);
+        assertEquals(1, model.getPlayerPositionList().size());
+        assertEquals(1, model.getComputerPositionList().size());
 
     }
 
