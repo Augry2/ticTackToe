@@ -61,7 +61,7 @@ public class GameModel {
      * controls what happens when the user clicks one of the buttons. after a button
      * has been clicked the computer will automatically click another button
      */
-    public void buttonClick(int i) {
+    public void placeMark(int i) {
         if (checkEndRound())
             return;
 
@@ -135,6 +135,8 @@ public class GameModel {
         }
     }
 
+
+
     /**
      * clicks a random button that has not already been selected
      */
@@ -185,7 +187,7 @@ public class GameModel {
         List<List> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List current : winCons) {
-            if (playerPositionList.containsAll(current)) {
+            if (playerPositionList.containsAll(current) ) {
                 playerWins++;
                 playerWonTheRound = true;
                 winnerAnnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);

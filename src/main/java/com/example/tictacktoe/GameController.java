@@ -27,6 +27,7 @@ public class GameController {
     private final GameModel model = new GameModel();
 
     /**
+     *
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
      */
     public void initialize() {
@@ -56,38 +57,38 @@ public class GameController {
     }
 
     public void Button1Clicked() {
-        model.buttonClick(1);
+        model.placeMark(1);
     }
 
     public void Button2Clicked() {
-        model.buttonClick(2);
+        model.placeMark(2);
     }
 
     public void Button3Clicked() {
-        model.buttonClick(3);
+        model.placeMark(3);
     }
 
     public void Button4Clicked() {
-        model.buttonClick(4);
+        model.placeMark(4);
     }
 
     public void Button5Clicked() {
-        model.buttonClick(5);
+        model.placeMark(5);
     }
 
     public void Button6Clicked() {
-        model.buttonClick(6);
+        model.placeMark(6);
     }
 
     public void Button7Clicked() {
-        model.buttonClick(7);
+        model.placeMark(7);
     }
 
     public void Button8Clicked() {
-        model.buttonClick(8);
+        model.placeMark(8);
     }
 
     public void Button9Clicked() {
-        model.buttonClick(9);
+        model.placeMark(9);
     }
 }

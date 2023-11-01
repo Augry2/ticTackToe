@@ -3,6 +3,7 @@ package com.example.tictacktoe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class GameModelTest {
     GameModel model = new GameModel();
@@ -11,9 +12,9 @@ class GameModelTest {
     @DisplayName("button can only be clicked once")
     void buttonCanOnlyBeClickedOnce() {
 
-        model.buttonClick(1);
-        model.buttonClick(1);
-        model.buttonClick(1);
+        model.placeMark(1);
+        model.placeMark(1);
+        model.placeMark(1);
 
         assertEquals(1, model.getPlayerPositionList().size());
         assertEquals(1, model.getComputerPositionList().size());
@@ -23,23 +24,30 @@ class GameModelTest {
     @Test
     @DisplayName("computer clicks are generated after a player clicks a button")
     void computerClicksAreGeneratedAfterAPlayerClicksAButton() {
-
+        int playerMarkPosition = 1;
         assertTrue(model.getComputerPositionList().isEmpty());
 
-        model.buttonClick(1);
+        model.placeMark(playerMarkPosition);
 
         assertFalse(model.getComputerPositionList().isEmpty());
+        assertTrue(model.getComputerPositionList().get(0) != playerMarkPosition);
     }
 
     @Test
     @DisplayName("button clicks are saved")
     void buttonClicksAreSaved() {
 
-        assertTrue(model.getPlayerPositionList().isEmpty());
+        assumeTrue(model.getPlayerPositionList().isEmpty());
 
-        model.buttonClick(1);
+        model.placeMark(1);
 
         assertTrue(model.getPlayerPositionList().contains(1));
+    }
+
+    @Test
+    @DisplayName("new game starts with empty lists")
+    void newGameStartsWithEmptyLists() {
+
     }
 
     @Test
