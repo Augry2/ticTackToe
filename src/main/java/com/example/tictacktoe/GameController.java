@@ -39,7 +39,7 @@ public class GameController {
         button7.textProperty().bindBidirectional(model.button7Property());
         button8.textProperty().bindBidirectional(model.button8Property());
         button9.textProperty().bindBidirectional(model.button9Property());
-        winnerAnounce.textProperty().bindBidirectional(model.winnerAnounceProperty());
+        winnerAnounce.textProperty().bindBidirectional(model.winnerAnnounceProperty());
     }
 
     public void resetGame() {

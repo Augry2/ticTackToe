@@ -60,7 +60,7 @@ public class GameModel {
 
     /**
      * controls what happens when the user clicks one of the buttons. after a button
-     * has been clicked the computer will automatically click a another button
+     * has been clicked the computer will automatically click another button
      */
     public void buttonClick(int i) {
         if (checkEndRound())
@@ -161,7 +161,7 @@ public class GameModel {
     }
 
     /**
-     * returns a StringProperty based on which number is sent in, 1 resembles Stringproperty for button1
+     * returns a StringProperty based on which number is sent in, 1 resembles StringProperty for button1
      */
     public StringProperty getButtonPropertyByNumber(int randomNumber) {
         return switch (randomNumber) {
@@ -183,14 +183,14 @@ public class GameModel {
      * method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result
      */
     public boolean checkEndRound() {
-        List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
+        List<List> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List current : winCons) {
             if (playerPositionList.containsAll(current)) {
                 System.out.println("Player Won");
                 playerWins++;
                 playerWonTheRound = true;
-                winnerAnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
+                winnerAnnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
         }
@@ -198,7 +198,7 @@ public class GameModel {
             if (computerPositionList.containsAll(current)) {
                 System.out.println("Computer Won");
                 computerWins++;
-                winnerAnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
+                winnerAnnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
         }
@@ -206,7 +206,7 @@ public class GameModel {
         int playerPlusComputerCounter = playerPositionList.size() + computerPositionList.size();
         if (playerPlusComputerCounter == 9) {
             System.out.println("tie");
-            winnerAnounce.set("The game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
+            winnerAnnounce.set("The game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
             return true;
         }
 
@@ -271,7 +271,7 @@ public class GameModel {
 
     private final StringProperty button9 = new SimpleStringProperty("");
 
-    private final StringProperty winnerAnounce = new SimpleStringProperty("");
+    private final StringProperty winnerAnnounce = new SimpleStringProperty("");
 
 
     public StringProperty button1Property() {
@@ -310,7 +310,7 @@ public class GameModel {
         return button9;
     }
 
-    public StringProperty winnerAnounceProperty() {
-        return winnerAnounce;
+    public StringProperty winnerAnnounceProperty() {
+        return winnerAnnounce;
     }
 }

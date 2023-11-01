@@ -54,7 +54,7 @@ class GameModelTest {
         model.getPlayerPositionList().add(3);
 
         assertTrue(model.checkEndRound());
-        assertTrue(model.winnerAnounceProperty().get().contains("Player Won"));
+        assertTrue(model.winnerAnnounceProperty().get().contains("Player Won"));
     }
 
     @Test
@@ -67,7 +67,7 @@ class GameModelTest {
         model.getComputerPositionList().add(3);
 
         assertTrue(model.checkEndRound());
-        assertTrue(model.winnerAnounceProperty().get().contains("Computer Won"));
+        assertTrue(model.winnerAnnounceProperty().get().contains("Computer Won"));
     }
 
     @Test
@@ -86,7 +86,7 @@ class GameModelTest {
         model.getComputerPositionList().add(9);
 
         assertTrue(model.checkEndRound());
-        assertTrue(model.winnerAnounceProperty().get().contains("The game is a tie"));
+        assertTrue(model.winnerAnnounceProperty().get().contains("The game is a tie"));
     }
 
 
