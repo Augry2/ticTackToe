@@ -18,10 +18,7 @@ public class GameModel {
 
     private int playerWins; // contains total amount of wins
     private int computerWins;
-    private String winnerMessage; // String to be printed out after each non-tie round
     private boolean playerWonTheRound = false;
-
-
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     public List<Integer> playerPositionList = new ArrayList<>();
