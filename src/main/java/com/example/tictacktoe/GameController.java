@@ -21,16 +21,10 @@ public class GameController {
     public Button button7 = new Button();
     public Button button8 = new Button();
     public Button button9 = new Button();
-    public Label winnerAnounce = new Label(); // should be visible when a winner is decided
+    public Label winnerAnounce = new Label();
     public Button playAgainButton = new Button();
     public Button exitProgramButton = new Button();
-
     private final GameModel model = new GameModel();
-
-    public GameModel getModel() {
-        return model;
-    }
-
 
     /**
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
@@ -48,23 +42,9 @@ public class GameController {
         winnerAnounce.textProperty().bindBidirectional(model.winnerAnounceProperty());
     }
 
-    public void enableButtons() {
-        button1.setDisable(false);
-        button2.setDisable(false);
-        button3.setDisable(false);
-        button4.setDisable(false);
-        button5.setDisable(false);
-        button6.setDisable(false);
-        button7.setDisable(false);
-        button8.setDisable(false);
-        button9.setDisable(false);
-    }
-
     public void resetGame() {
         model.resetModelData();
         winnerAnounce.setText("");
-        enableButtons();
-
     }
 
     public void PlayAgainButtonClicked() {

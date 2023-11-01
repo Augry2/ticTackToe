@@ -23,9 +23,11 @@ public class GameModel {
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     public List<Integer> playerPositionList = new ArrayList<>();
     public List<Integer> computerPositionList = new ArrayList<>();
+
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
+
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
@@ -38,7 +40,6 @@ public class GameModel {
         // Reset turn variables
         playerOnesTurn = true;
         playerTwosTurn = false;
-
         playerWonTheRound = false;
 
         // Reset button properties
@@ -57,6 +58,10 @@ public class GameModel {
         button9.set("");
     }
 
+    /**
+     * controls what happens when the user clicks one of the buttons. after a button
+     * has been clicked the computer will automatically click a another button
+     */
     public void buttonClick(int i) {
         if (checkEndRound())
             return;
@@ -121,9 +126,6 @@ public class GameModel {
                 }
             }
 
-            // if player one has won, set it to player twos turn
-
-
             if (playerTwosTurn && !playerWonTheRound) {
                 if (playerPositionList.size() + computerPositionList.size() == 9)
                     return;
@@ -134,7 +136,9 @@ public class GameModel {
         }
     }
 
-
+    /**
+     * clicks a random button that has not already been selected
+     */
     public void randomButtonClick() {
         Random random = new Random();
         int randomNumber;
@@ -149,10 +153,16 @@ public class GameModel {
         computerPositionList.add(randomNumber);
     }
 
+    /**
+     * checks if a button is already clicked
+     */
     public boolean buttonIsValid(int number) {
         return !playerPositionList.contains(number) && !computerPositionList.contains(number);
     }
 
+    /**
+     * returns a StringProperty based on which number is sent in, 1 resembles Stringproperty for button1
+     */
     public StringProperty getButtonPropertyByNumber(int randomNumber) {
         return switch (randomNumber) {
             case 1 -> button1;
@@ -169,8 +179,9 @@ public class GameModel {
     }
 
 
-
-    /*method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result **/
+    /**
+     * method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result
+     */
     public boolean checkEndRound() {
         List<List> winCons = getLists(); // creates a list containing all the diffrent win-conditions
 
@@ -187,7 +198,6 @@ public class GameModel {
             if (computerPositionList.containsAll(current)) {
                 System.out.println("Computer Won");
                 computerWins++;
-
                 winnerAnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
@@ -205,7 +215,9 @@ public class GameModel {
         return false;
     }
 
-    /*generes the diffrent win conditions for the checWins method **/
+    /**
+     * returns a list with all the different win conditions for the game
+     */
     private static List<List> getLists() {
         List<Integer> topRow = Arrays.asList(1, 2, 3);
         List<Integer> midRow = Arrays.asList(4, 5, 6);
@@ -228,20 +240,19 @@ public class GameModel {
         return winCons;
     }
 
-    /*makes it so the player can pick a box**/
+
     public void setPlayerTwosTurn() {
         playerOnesTurn = false;
         playerTwosTurn = true;
     }
 
-    /*makes it so the computer will pick a box**/
+
     public void setPlayerOnesTurn() {
         playerTwosTurn = false;
         playerOnesTurn = true;
     }
 
 
-    // variables for all the buttons here
     private final StringProperty button1 = new SimpleStringProperty("");
 
     private final StringProperty button2 = new SimpleStringProperty("");
