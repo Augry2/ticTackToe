@@ -1,16 +1,11 @@
 package com.example.tictacktoe;
 
 import javafx.application.Platform;
-import javafx.beans.property.StringProperty;
+
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Containing methods that control what happens when a button is clicked
@@ -40,7 +35,6 @@ public class GameController {
 
 
     /**
-     *
      * binding the StringProperty in the model class to the button in this class, the button in this class is in turn bound to the fxml file
      */
     public void initialize() {
