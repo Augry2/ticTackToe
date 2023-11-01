@@ -20,6 +20,7 @@ public class GameModel {
     private int computerWins;
     private boolean playerWonTheRound = false;
 
+
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     private final List<Integer> playerPositionList = new ArrayList<>();
     private final List<Integer> computerPositionList = new ArrayList<>();
@@ -27,6 +28,7 @@ public class GameModel {
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
+
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
@@ -62,65 +64,12 @@ public class GameModel {
      * has been clicked the computer will automatically click another button
      */
     public void placeMark(int i) {
-        if (checkEndRound())
-            return;
 
         if (playerOnesTurn) {
             if (buttonIsValid(i)) {
                 switch (i) {
-                    case 1:
-                        button1.set("O");
-                        playerPositionList.add(1);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 2:
-                        button2.set("O");
-                        playerPositionList.add(2);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 3:
-                        button3.set("O");
-                        playerPositionList.add(3);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 4:
-                        button4.set("O");
-                        playerPositionList.add(4);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 5:
-                        button5.set("O");
-                        playerPositionList.add(5);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 6:
-                        button6.set("O");
-                        playerPositionList.add(6);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 7:
-                        button7.set("O");
-                        playerPositionList.add(7);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 8:
-                        button8.set("O");
-                        playerPositionList.add(8);
-                        setPlayerTwosTurn();
-                        checkEndRound();
-                        break;
-                    case 9:
-                        button9.set("O");
-                        playerPositionList.add(9);
-                        setPlayerTwosTurn();
-                        checkEndRound();
+                    case 1, 2, 3, 4, 5, 6, 7, 8, 9:
+                        placePlayerMark(i);
                         break;
                 }
             }
@@ -128,14 +77,26 @@ public class GameModel {
             if (playerTwosTurn && !playerWonTheRound) {
                 if (playerPositionList.size() + computerPositionList.size() == 9)
                     return;
-                randomButtonClick();
-                setPlayerOnesTurn();
-                checkEndRound();
+                placeComputerMark();
             }
         }
     }
 
+    private void placeComputerMark() {
+        randomButtonClick();
+        setPlayerOnesTurn();
+        checkEndRound();
+    }
 
+    private void placePlayerMark(int i) {
+        StringProperty button = getButtonPropertyByNumber(i);
+
+        button.set("O");
+        playerPositionList.add(i);
+        setPlayerTwosTurn();
+        checkEndRound();
+
+    }
 
     /**
      * clicks a random button that has not already been selected
@@ -187,7 +148,7 @@ public class GameModel {
         List<List> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List current : winCons) {
-            if (playerPositionList.containsAll(current) ) {
+            if (playerPositionList.containsAll(current)) {
                 playerWins++;
                 playerWonTheRound = true;
                 winnerAnnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);

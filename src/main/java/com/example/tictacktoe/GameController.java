@@ -1,9 +1,16 @@
 package com.example.tictacktoe;
 
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Containing methods that control what happens when a button is clicked
@@ -21,10 +28,16 @@ public class GameController {
     public Button button7 = new Button();
     public Button button8 = new Button();
     public Button button9 = new Button();
-    public Label winnerAnounce = new Label();
+    public Label winnerAnounce = new Label(); // should be visible when a winner is decided
     public Button playAgainButton = new Button();
     public Button exitProgramButton = new Button();
+
     private final GameModel model = new GameModel();
+
+    public GameModel getModel() {
+        return model;
+    }
+
 
     /**
      *
@@ -43,9 +56,23 @@ public class GameController {
         winnerAnounce.textProperty().bindBidirectional(model.winnerAnnounceProperty());
     }
 
+    public void enableButtons() {
+        button1.setDisable(false);
+        button2.setDisable(false);
+        button3.setDisable(false);
+        button4.setDisable(false);
+        button5.setDisable(false);
+        button6.setDisable(false);
+        button7.setDisable(false);
+        button8.setDisable(false);
+        button9.setDisable(false);
+    }
+
     public void resetGame() {
         model.resetModelData();
         winnerAnounce.setText("");
+        enableButtons();
+
     }
 
     public void PlayAgainButtonClicked() {
