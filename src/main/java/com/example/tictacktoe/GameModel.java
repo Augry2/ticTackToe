@@ -19,25 +19,16 @@ public class GameModel {
     private int playerWins; // contains total amount of wins
     private int computerWins;
     private String winnerMessage; // String to be printed out after each non-tie round
-
-
-    public int getPlayerWins() {
-        return playerWins;
-    }
-
-    public int getComputerWins() {
-        return computerWins;
-    }
+    private boolean playerWonTheRound = false;
+    private boolean computerWonTheRound = false;
 
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
     public List<Integer> playerPositionList = new ArrayList<>();
     public List<Integer> computerPositionList = new ArrayList<>();
-
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
@@ -55,20 +46,23 @@ public class GameModel {
         winner = null;
         winnerMessage = null;
 
+        playerWonTheRound = false;
+        computerWonTheRound = false;
+
         // Reset button properties
         resetButtonText();
     }
 
     private void resetButtonText() {
-        button1Property.set("");
-        button2Property.set("");
-        button3Property.set("");
-        button4Property.set("");
-        button5Property.set("");
-        button6Property.set("");
-        button7Property.set("");
-        button8Property.set("");
-        button9Property.set("");
+        button1.set("");
+        button2.set("");
+        button3.set("");
+        button4.set("");
+        button5.set("");
+        button6.set("");
+        button7.set("");
+        button8.set("");
+        button9.set("");
     }
 
     public void buttonClick(int i) {
@@ -79,64 +73,66 @@ public class GameModel {
             if (buttonIsValid(i)) {
                 switch (i) {
                     case 1:
-                        button1Property.set("O");
+                        button1.set("O");
                         playerPositionList.add(1);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 2:
-                        button2Property.set("O");
+                        button2.set("O");
                         playerPositionList.add(2);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 3:
-                        button3Property.set("O");
+                        button3.set("O");
                         playerPositionList.add(3);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 4:
-                        button4Property.set("O");
+                        button4.set("O");
                         playerPositionList.add(4);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 5:
-                        button5Property.set("O");
+                        button5.set("O");
                         playerPositionList.add(5);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 6:
-                        button6Property.set("O");
+                        button6.set("O");
                         playerPositionList.add(6);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 7:
-                        button7Property.set("O");
+                        button7.set("O");
                         playerPositionList.add(7);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 8:
-                        button8Property.set("O");
+                        button8.set("O");
                         playerPositionList.add(8);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                     case 9:
-                        button9Property.set("O");
+                        button9.set("O");
                         playerPositionList.add(9);
                         setPlayerTwosTurn();
                         checkEndRound();
                         break;
                 }
-
             }
 
-            if (playerTwosTurn) {
+            // if player one has won, set it to player twos turn
+
+
+            if (playerTwosTurn && !playerWonTheRound) {
                 if (playerPositionList.size() + computerPositionList.size() == 9)
                     return;
                 randomButtonClick();
@@ -170,15 +166,15 @@ public class GameModel {
 
     public StringProperty getButtonPropertyByNumber(int randomNumber) {
         return switch (randomNumber) {
-            case 1 -> button1Property;
-            case 2 -> button2Property;
-            case 3 -> button3Property;
-            case 4 -> button4Property;
-            case 5 -> button5Property;
-            case 6 -> button6Property;
-            case 7 -> button7Property;
-            case 8 -> button8Property;
-            case 9 -> button9Property;
+            case 1 -> button1;
+            case 2 -> button2;
+            case 3 -> button3;
+            case 4 -> button4;
+            case 5 -> button5;
+            case 6 -> button6;
+            case 7 -> button7;
+            case 8 -> button8;
+            case 9 -> button9;
             default -> null;
         };
     }
@@ -194,18 +190,18 @@ public class GameModel {
         for (List current : winCons) {
             if (playerPositionList.containsAll(current)) {
                 System.out.println("Player Won");
-                winner = "Player Won";
                 playerWins++;
-                winnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+                playerWonTheRound = true;
+                winnerAnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
         }
         for (List current : winCons) {
             if (computerPositionList.containsAll(current)) {
                 System.out.println("Computer Won");
-                winner = "Computer Won";
                 computerWins++;
-                winnerMessage = winner + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+                computerWonTheRound = true;
+                winnerAnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
             }
         }
@@ -213,7 +209,7 @@ public class GameModel {
         int playerPlusComputerCounter = playerPositionList.size() + computerPositionList.size();
         if (playerPlusComputerCounter == 9) {
             System.out.println("tie");
-            winnerMessage = "Game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins;
+            winnerAnounce.set("The game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
             return true;
         }
 
@@ -260,95 +256,68 @@ public class GameModel {
 
 
     // variables for all the buttons here
-    private final StringProperty button1Property = new SimpleStringProperty("");
+    private final StringProperty button1 = new SimpleStringProperty("");
+
+    private final StringProperty button2 = new SimpleStringProperty("");
+
+    private final StringProperty button3 = new SimpleStringProperty("");
+
+    private final StringProperty button4 = new SimpleStringProperty("");
+
+    private final StringProperty button5 = new SimpleStringProperty("");
+
+    private final StringProperty button6 = new SimpleStringProperty("");
+
+    private final StringProperty button7 = new SimpleStringProperty("");
+
+    private final StringProperty button8 = new SimpleStringProperty("");
+
+    private final StringProperty button9 = new SimpleStringProperty("");
+
+    private final StringProperty winnerAnounce = new SimpleStringProperty("");
 
 
-    private final StringProperty button2Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button3Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button4Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button5Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button6Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button7Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button8Property = new SimpleStringProperty("");
-
-
-    private final StringProperty button9Property = new SimpleStringProperty("");
-
-
-    private final StringProperty exitProgramButtonProperty = new SimpleStringProperty("Exit program");
-
-
-    private final StringProperty playAgainButtonProperty = new SimpleStringProperty("Play again");
-
-
-    public StringProperty exitProgramButtonPropertyProperty() {
-        return exitProgramButtonProperty;
+    public StringProperty button1Property() {
+        return button1;
     }
 
-
-    public StringProperty playAgainButtonPropertyProperty() {
-        return playAgainButtonProperty;
+    public StringProperty button2Property() {
+        return button2;
     }
 
-
-    public StringProperty button1PropertyProperty() {
-        return button1Property;
+    public StringProperty button3Property() {
+        return button3;
     }
 
-
-    public StringProperty button2PropertyProperty() {
-        return button2Property;
+    public StringProperty button4Property() {
+        return button4;
     }
 
-
-    public StringProperty button3PropertyProperty() {
-        return button3Property;
+    public StringProperty button5Property() {
+        return button5;
     }
 
-
-    public StringProperty button4PropertyProperty() {
-        return button4Property;
+    public StringProperty button6Property() {
+        return button6;
     }
 
-
-    public StringProperty button5PropertyProperty() {
-        return button5Property;
+    public StringProperty button7Property() {
+        return button7;
     }
 
-
-    public StringProperty button6PropertyProperty() {
-        return button6Property;
+    public StringProperty button8Property() {
+        return button8;
     }
 
-
-    public StringProperty button7PropertyProperty() {
-        return button7Property;
+    public StringProperty button9Property() {
+        return button9;
     }
-
-
-    public StringProperty button8PropertyProperty() {
-        return button8Property;
-    }
-
-
-    public StringProperty button9PropertyProperty() {
-        return button9Property;
-    }
-
 
     public String getWinnerMessage() {
         return winnerMessage;
+    }
+
+    public StringProperty winnerAnounceProperty() {
+        return winnerAnounce;
     }
 }
