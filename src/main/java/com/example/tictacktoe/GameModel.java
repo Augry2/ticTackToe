@@ -21,13 +21,13 @@ public class GameModel {
     private boolean playerWonTheRound = false;
 
     //when player presses a button the controller class will add an integer into this list for respective buttons clicked, if nr1 is pressed int 1 is added to this list
-    private List<Integer> playerPositionList = new ArrayList<>();
-    private List<Integer> computerPositionList = new ArrayList<>();
+    private final List<Integer> playerPositionList = new ArrayList<>();
+    private final List<Integer> computerPositionList = new ArrayList<>();
 
-    private List<Integer> getPlayerPositionList() {
+    public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-    private List<Integer> getComputerPositionList() {
+    public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
 
@@ -181,7 +181,7 @@ public class GameModel {
     /**
      * method that checks if the use or computer has put 3 marks in a row then returns true or false depending on the result
      */
-    private boolean checkEndRound() {
+    public boolean checkEndRound() {
         List<List> winCons = getLists(); // creates a list containing all the different win-conditions
 
         for (List current : winCons) {
