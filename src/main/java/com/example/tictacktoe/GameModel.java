@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class GameModel {
 
-    public boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
-    public boolean playerTwosTurn = false;                                                                            // the other one should be set to true
+    private boolean playerOnesTurn = true; // if a player is true, then it can make a move, if false it cannot, when a move is made it should be set to false,
+    private boolean playerTwosTurn = false;                                                                            // the other one should be set to true
 
     private int playerWins; // contains total amount of wins
     private int computerWins;
@@ -27,7 +27,6 @@ public class GameModel {
     public List<Integer> getPlayerPositionList() {
         return playerPositionList;
     }
-
     public List<Integer> getComputerPositionList() {
         return computerPositionList;
     }
@@ -187,7 +186,6 @@ public class GameModel {
 
         for (List current : winCons) {
             if (playerPositionList.containsAll(current)) {
-                System.out.println("Player Won");
                 playerWins++;
                 playerWonTheRound = true;
                 winnerAnnounce.set("Player Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
@@ -196,7 +194,6 @@ public class GameModel {
         }
         for (List current : winCons) {
             if (computerPositionList.containsAll(current)) {
-                System.out.println("Computer Won");
                 computerWins++;
                 winnerAnnounce.set("Computer Won" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
                 return true;
@@ -205,13 +202,10 @@ public class GameModel {
 
         int playerPlusComputerCounter = playerPositionList.size() + computerPositionList.size();
         if (playerPlusComputerCounter == 9) {
-            System.out.println("tie");
             winnerAnnounce.set("The game is a tie" + "\n" + "Player: " + playerWins + "\n" + "Computer: " + computerWins);
             return true;
         }
 
-        System.out.println(playerPositionList.size());
-        System.out.println(computerPositionList.size());
         return false;
     }
 
